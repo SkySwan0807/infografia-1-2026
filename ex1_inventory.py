@@ -31,12 +31,7 @@ precios = {
 def valor_total(items: list[str], tabla: dict[str, int]) -> int:
     # TODO: devolver la suma del precio de todos los items del inventario.
     #
-    # pista: recorrer la lista con un for y acumular en una variable.
-    #        el precio de cada item se obtiene con tabla[item].
-    #
-    # ejemplo: items=["pocion", "espada"], tabla={"pocion": 5, "espada": 50}
-    #          -> 55
-    raise NotImplementedError("completar valor_total")
+    return sum(tabla[item] for item in items)
 
 
 def contar(items: list[str]) -> dict[str, int]:
