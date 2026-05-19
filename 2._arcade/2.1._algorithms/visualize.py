@@ -27,7 +27,7 @@ def show(pixels, title: str = "rasterizado", with_intensity: bool = False, endpo
     class GridView(arcade.View):
         def __init__(self):
             super().__init__()
-            self.background_color = arcade.color.DARK_SLATE_GRAY
+            self.background_color = arcade.color.BLACK
 
         def on_draw(self):
             self.clear()

@@ -7,6 +7,7 @@
 # desaparece visualmente.
 #
 # devuelve tuplas (x, y, intensity) con intensity en [0, 1].
+from ex3_bresenham_full import get_line as get_line_bresenham
 
 def get_line(x0: int, y0: int, x1: int, y1: int) -> list[tuple[int, int, float]]:
     points: list[tuple[int, int, float]] = []
@@ -53,7 +54,10 @@ if __name__ == "__main__":
 
     p0, p1 = (5, 5), (55, 22)
     p2, p3 = (5, 30), (55, 8)
-    pixels = get_line(*p0, *p1) + get_line(*p2, *p3)
+    pixels = (
+        get_line(*p2, *p3) 
+        + [(x, y, 1.0) for x, y in get_line_bresenham(*p0, *p1)]
+    )
 
     show(
         pixels,
