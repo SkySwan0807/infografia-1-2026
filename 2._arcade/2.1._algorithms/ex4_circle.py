@@ -1,12 +1,3 @@
-# ejercicio: midpoint circle algorithm (boilerplate).
-#
-# ya rasterizamos lineas de varias maneras. el circulo es la siguiente
-# primitiva natural y usa la misma idea que Bresenham: una variable de
-# decision incremental que solo necesita enteros.
-#
-# truco: aprovechar la simetria del circulo. solo calculamos los pixels
-# de UN octante (1/8 del circulo) y reflejamos para los otros 7.
-#
 # referencia rapida del algoritmo:
 #   x, y = 0, r
 #   p = 1 - r        # variable de decision
@@ -58,7 +49,7 @@ def get_circle(xc: int, yc: int, r: int) -> list[tuple[int, int]]:
 if __name__ == "__main__":
     from visualize import show
 
-    pixels = get_circle(30, 17, 12)
+    pixels = get_circle(60, 34, 24)
     show(pixels, title="Midpoint circle", endpoints=[(30, 17)])
 
 

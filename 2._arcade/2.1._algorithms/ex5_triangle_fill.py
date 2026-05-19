@@ -22,11 +22,11 @@ def get_triangle(p0: tuple[int, int], p1: tuple[int, int], p2: tuple[int, int]) 
         return xa + (xb - xa) * t
 
     # mitad inferior: y0 <= y < y1, aristas (v0->v1) y (v0->v2)
-    for y in range(y0, y1):
-        xa = edge_x(y0, y2, x0, x2, y)
-        xb = edge_x(y0, y1, x0, x1, y)
-        for x in range(int(min(xa, xb)), int(max(xa, xb)) + 1):
-            pixels.append((x, y))
+    # for y in range(y0, y1):
+    #     xa = edge_x(y0, y2, x0, x2, y)
+    #     xb = edge_x(y0, y1, x0, x1, y)
+    #     for x in range(int(min(xa, xb)), int(max(xa, xb)) + 1):
+    #         pixels.append((x, y))
 
     # mitad superior: y1 <= y <= y2, aristas (v0->v2) y (v1->v2)
     for y in range(y1, y2 + 1):
