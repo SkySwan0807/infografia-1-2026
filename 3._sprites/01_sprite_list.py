@@ -12,7 +12,7 @@ import random
 WIDTH = 1280
 HEIGHT = 720
 TITLE = "01 - SpriteList"
-N_COINS = 60
+N_COINS = 10
 
 
 class SpriteListView(arcade.View):
@@ -23,12 +23,20 @@ class SpriteListView(arcade.View):
 
         for _ in range(N_COINS):
             coin = arcade.Sprite(
-                "4._sprites/img/coin.png",
+                "3._sprites/img/coin.png",
                 scale=random.uniform(0.1, 0.35),
                 center_x=random.randint(40, WIDTH - 40),
                 center_y=random.randint(40, HEIGHT - 40),
             )
+            coin.change_x=random.uniform(-100, 100)  # velocidad horizontal
+            coin.change_y=random.uniform(-100, 100)  # velocidad vertical
             self.coins.append(coin)
+
+    def on_update(self, delta_time):
+        for coin in self.coins:
+            coin.angle += 45 * delta_time  # rotar 360 grados por segundo
+            coin.center_x = (coin.center_x + coin.change_x * delta_time) % WIDTH  # wrap around horizontal
+            coin.center_y = (coin.center_y + coin.change_y * delta_time) % HEIGHT  # wrap around vertical
 
     def on_draw(self):
         self.clear()
@@ -51,7 +59,7 @@ if __name__ == "__main__":
 
 # extensiones:
 # 1. que cada moneda rote sola: en on_update, recorrer self.coins y
-#    hacer coin.angle += algo.
+#    hacer coin.angle += algo. DONE
 # 2. que cada moneda tenga una velocidad aleatoria y se mueva. cuando
 #    salga de pantalla por un borde, reaparecer del otro (wrap around).
 # 3. presionar SPACE para regenerar todas las monedas en nuevas

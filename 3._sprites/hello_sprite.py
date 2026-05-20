@@ -8,7 +8,7 @@ class SpriteView(arcade.View):
     def __init__(self):
         super().__init__()
         self.background_color = arcade.color.BLACK
-        self.sprite = arcade.Sprite("4._sprites/img/mario.png", scale=0.5)
+        self.sprite = arcade.Sprite("3._sprites/img/mario.png", scale=0.5)
         self.sprite.center_x = WIDTH // 2
         self.sprite.center_y = HEIGHT // 2
 

@@ -20,7 +20,7 @@ class FollowView(arcade.View):
         super().__init__()
         self.background_color = arcade.color.DARK_SLATE_GRAY
         self.player = arcade.Sprite(
-            "4._sprites/img/mario.png", scale=0.3,
+            "3._sprites/img/mario.png", scale=0.3,
             center_x=WIDTH // 2, center_y=HEIGHT // 2,
         )
         self.target_x = self.player.center_x

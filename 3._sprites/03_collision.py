@@ -21,7 +21,7 @@ class CollisionView(arcade.View):
         super().__init__()
         self.background_color = arcade.color.DARK_OLIVE_GREEN
         self.player = arcade.Sprite(
-            "4._sprites/img/mario.png", scale=0.4,
+            "3._sprites/img/mario.png", scale=0.4,
             center_x=WIDTH // 2, center_y=HEIGHT // 2,
         )
         self.coins = arcade.SpriteList()
@@ -31,7 +31,7 @@ class CollisionView(arcade.View):
     def spawn_coins(self):
         for _ in range(N_COINS):
             coin = arcade.Sprite(
-                "4._sprites/img/coin.png", scale=0.2,
+                "3._sprites/img/coin.png", scale=0.2,
                 center_x=random.randint(40, WIDTH - 40),
                 center_y=random.randint(40, HEIGHT - 40),
             )
