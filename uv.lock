@@ -89,10 +89,14 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "arcade" },
+    { name = "pymunk" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "arcade", specifier = ">=3.3.3" }]
+requires-dist = [
+    { name = "arcade", specifier = ">=3.3.3" },
+    { name = "pymunk", specifier = ">=6.9.0" },
+]
 
 [[package]]
 name = "pillow"

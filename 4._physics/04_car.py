@@ -60,14 +60,14 @@ class Car:
         # con la que esta unido (porque se tocan en el punto del pin).
         f_joint = pymunk.PinJoint(
             chassis_body, f_wheel_body,
-            (x + WHEEL_DX, y + WHEEL_DY), (0, 0),
+            (WHEEL_DX, WHEEL_DY), (0, 0),
         )
         f_joint.collide_bodies = False
         f_motor = pymunk.SimpleMotor(chassis_body, f_wheel_body, MOTOR_RATE)
 
         r_joint = pymunk.PinJoint(
             chassis_body, r_wheel_body,
-            (x - WHEEL_DX, y + WHEEL_DY), (0, 0),
+            (-WHEEL_DX, WHEEL_DY), (0, 0),
         )
         r_joint.collide_bodies = False
         r_motor = pymunk.SimpleMotor(chassis_body, r_wheel_body, MOTOR_RATE)

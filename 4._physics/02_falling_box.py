@@ -30,14 +30,16 @@ class FallingBoxView(arcade.View):
         # usabamos -9 porque las unidades eran arbitrarias).
         self.space = pymunk.Space()
         self.space.gravity = (0, -90)
-
+        
+        box_size = (50, 50)
+        box_mass = 30
         # body dinamico: necesita masa Y momento de inercia (para rotacion)
-        body = pymunk.Body(mass=5, moment=pymunk.moment_for_box(1, (30, 30)))
+        body = pymunk.Body(mass=box_mass, moment=pymunk.moment_for_box(box_mass, box_size))
         body.position = (WIDTH // 2, HEIGHT // 2)
         body.angle = 0.2  # angulo inicial: asi rota al caer en vez de caer plana
 
         # shape: la caja real (para colisiones). elasticity = rebote.
-        self.shape = pymunk.Poly.create_box(body, (30, 30))
+        self.shape = pymunk.Poly.create_box(body, box_size)
         self.shape.elasticity = 0.9
         self.shape.friction = 0.1
 
@@ -46,7 +48,7 @@ class FallingBoxView(arcade.View):
         floor_body = pymunk.Body(body_type=pymunk.Body.STATIC)
         floor_shape = pymunk.Segment(floor_body, (0, 20), (WIDTH, 20), 0)
         floor_shape.friction = 0.1
-        floor_shape.elasticity = 0.7
+        floor_shape.elasticity = 0.3
 
         # registrar todo en el espacio
         self.space.add(body, self.shape)
@@ -54,7 +56,7 @@ class FallingBoxView(arcade.View):
 
         # sprite visual asociado al body de la caja
         self.sprites = arcade.SpriteList()
-        self.body_sprite = arcade.SpriteSolidColor(30, 30, color=arcade.color.CYAN)
+        self.body_sprite = arcade.SpriteSolidColor(box_size[0], box_size[1], color=arcade.color.CYAN)
         self.sprites.append(self.body_sprite)
 
     def on_update(self, delta_time):

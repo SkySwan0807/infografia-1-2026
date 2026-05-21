@@ -19,12 +19,12 @@ HEIGHT = 600
 TITLE = "03 - resorte amortiguado"
 
 # parametros de la fisica
-MASS = 1.0
-DAMPING = 0.5         # 0 = sin friccion (oscila eterno); mas alto = se frena rapido
-STIFFNESS = 100.0     # rigidez del resorte
+MASS = 10.0
+DAMPING = 0.2         # 0 = sin friccion (oscila eterno); mas alto = se frena rapido
+STIFFNESS = 70.0     # rigidez del resorte
 REST_LENGTH = 200
 ANCHOR_POINT = (400, 500)
-INITIAL_POSITION = (400, 300)
+INITIAL_POSITION = (500, 400)
 
 
 class SpringView(arcade.View):
@@ -32,7 +32,7 @@ class SpringView(arcade.View):
         super().__init__()
         self.background_color = arcade.color.BLACK
         self.space = pymunk.Space()
-        self.space.gravity = (0, -981)  # gravedad en px/seg^2 (~9.81 m/s^2 si 1m = 100px)
+        self.space.gravity = (0, -90)  # gravedad en px/seg^2 (~9.81 m/s^2 si 1m = 100px)
 
         # pelota: body dinamico + shape circular
         ball_body = pymunk.Body(MASS, pymunk.moment_for_circle(MASS, 0, 20))
