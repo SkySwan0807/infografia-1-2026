@@ -14,6 +14,7 @@
 # pelota arriba en una posicion x aleatoria.
 
 import arcade
+import math
 import pymunk
 import random
 
@@ -25,7 +26,7 @@ TITLE = "06 - callback de colision (pachinko)"
 # handlers. convencion: definirlos como constantes con nombre.
 BALL_TYPE = 1
 GOAL_TYPE = 2
-
+PEG_TYPE = 3
 
 class CollisionView(arcade.View):
     def __init__(self):
@@ -55,7 +56,7 @@ class CollisionView(arcade.View):
         # sensor=True hace que detecte el contacto pero NO empuje a la pelota:
         # la pelota atraviesa, el callback dispara, respawneamos arriba.
         goal_body = pymunk.Body(body_type=pymunk.Body.STATIC)
-        goal_shape = pymunk.Segment(goal_body, (0, 30), (WIDTH, 30), 8)
+        goal_shape = pymunk.Segment(goal_body, (350, 30), (450, 30), 8)
         goal_shape.collision_type = GOAL_TYPE
         goal_shape.sensor = True
         self.space.add(goal_body, goal_shape)
@@ -71,6 +72,18 @@ class CollisionView(arcade.View):
         handler = self.space.add_collision_handler(BALL_TYPE, GOAL_TYPE)
         handler.begin = self.on_goal
 
+        handler = self.space.add_collision_handler(BALL_TYPE, PEG_TYPE)
+        handler.begin = self.on_peg
+
+        self.canyon = arcade.SpriteSolidColor(
+            20, 80, 
+            center_x=WIDTH//2, 
+            center_y=HEIGHT - 40,
+            color=arcade.color.GREEN)
+
+        self.sprites = arcade.SpriteList()
+        self.sprites.append(self.canyon)
+
     def add_wall(self, a, b):
         body = pymunk.Body(body_type=pymunk.Body.STATIC)
         shape = pymunk.Segment(body, a, b, 2)
@@ -84,15 +97,20 @@ class CollisionView(arcade.View):
         shape = pymunk.Circle(body, r)
         shape.elasticity = 0.9
         shape.friction = 0.2
+        shape.collision_type = PEG_TYPE
         self.space.add(body, shape)
         self.pegs.append((x, y, r))
 
-    def spawn_ball(self):
+    def spawn_ball(self, x = None, y = None):
         # si habia una pelota anterior, sacarla del espacio
         if self.ball_body is not None:
             self.space.remove(self.ball_body, self.ball_shape)
+        
         body = pymunk.Body(mass=1, moment=pymunk.moment_for_circle(1, 0, 12))
-        body.position = (random.randint(80, WIDTH - 80), HEIGHT - 40)
+        if x is not None and y is not None:
+            body.position = (x, y)
+        else:
+            body.position = (random.randint(80, WIDTH - 80), HEIGHT - 40)
         shape = pymunk.Circle(body, 12)
         shape.elasticity = 0.7
         shape.friction = 0.3
@@ -101,16 +119,38 @@ class CollisionView(arcade.View):
         self.ball_body = body
         self.ball_shape = shape
 
+    def on_mouse_press(self, x, y, button, modifiers):
+        # click para respawnear la pelota en la posicion del mouse.
+        # self.spawn_ball(x, y)
+        spawn_x = int(WIDTH//2 + 40 * math.cos(-self.canyon.radians - math.pi/2))
+        spawn_y = int(HEIGHT - 40 + 40 * math.sin(-self.canyon.radians - math.pi/2))
+        self.spawn_ball(
+            spawn_x,
+            spawn_y
+        )
+
+    def on_mouse_motion(self, x, y, dx, dy):
+        # apuntar el canyon con el mouse.
+        self.canyon.angle = arcade.math.get_angle_degrees(
+            self.canyon.center_x, self.canyon.center_y, 
+            x, y
+            ) - 90
+
     def on_goal(self, arbiter, space, data):
         # se dispara una vez por contacto que EMPIEZA (no por frame).
         # arbiter.shapes son las dos shapes que se tocaron, en orden
         # (BALL, GOAL) porque asi registramos el handler.
-        self.score += 1
+        self.score += 30
         # NO podemos remover bodies aqui adentro: pymunk esta a la mitad
         # de iterar contactos. agendamos un flag y el respawn ocurre al
         # final del frame, en on_update.
-        self.needs_respawn = True
+        # self.needs_respawn = True
         return True  # True = aceptar la colision normalmente
+
+    def on_peg(self, arbiter, space, data):
+        print("tocamos un clavo!")
+        self.score += 1
+        return True
 
     def on_update(self, delta_time):
         self.space.step(1 / 60)
@@ -120,6 +160,8 @@ class CollisionView(arcade.View):
 
     def on_draw(self):
         self.clear()
+        # ca;on
+        self.sprites.draw()
         # clavos
         for x, y, r in self.pegs:
             arcade.draw_circle_filled(x, y, r, arcade.color.LIGHT_GRAY)
@@ -127,7 +169,7 @@ class CollisionView(arcade.View):
         for (x0, y0), (x1, y1) in self.walls:
             arcade.draw_line(x0, y0, x1, y1, arcade.color.WHITE, 2)
         # linea del gol
-        arcade.draw_line(0, 30, WIDTH, 30, arcade.color.LIGHT_GREEN, 4)
+        arcade.draw_line(350, 30, 450, 30, arcade.color.LIGHT_GREEN, 4)
         # pelota
         bx, by = self.ball_body.position
         arcade.draw_circle_filled(bx, by, 12, arcade.color.YELLOW)
@@ -135,6 +177,11 @@ class CollisionView(arcade.View):
         arcade.draw_text(
             f"goles: {self.score}",
             20, HEIGHT - 40, arcade.color.WHITE, 22,
+        )
+
+        arcade.draw_text(
+            f"angulo cañon: {self.canyon.angle:.1f}",
+            20, HEIGHT - 120, arcade.color.WHITE, 22,
         )
 
 
