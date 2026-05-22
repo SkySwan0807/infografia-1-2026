@@ -18,24 +18,32 @@ import random
 WIDTH = 1280
 HEIGHT = 720
 TITLE = "05 - sprite con comportamiento propio"
-
+GRAVITY = 800
 
 class Bouncer(arcade.Sprite):
     def __init__(self, x, y, vx, vy):
         super().__init__(
-            "4._sprites/img/coin.png", scale=0.25,
-            center_x=x, center_y=y,
+            r"Git de clase\infografia-1-2026\3._sprites\img\coin.png",
+            scale=0.25,
+            center_x=x,
+            center_y=y,
         )
-        self.change_x = vx  # px/seg
+
+        self.change_x = vx
         self.change_y = vy
 
     def update(self, delta_time):
-        # integrar posicion: pos += velocidad * dt
+        self.change_y -= GRAVITY * delta_time
+
         self.center_x += self.change_x * delta_time
         self.center_y += self.change_y * delta_time
 
-        # rebote contra bordes: invertir velocidad y encajar adentro.
-        # usar left/right/top/bottom respeta el tamano real del sprite.
+        if self.change_x > 0:
+            self.angle += 200 * delta_time
+        else:
+            self.angle -= 200 * delta_time
+
+
         if self.left < 0:
             self.left = 0
             self.change_x = -self.change_x
@@ -45,45 +53,152 @@ class Bouncer(arcade.Sprite):
 
         if self.bottom < 0:
             self.bottom = 0
-            self.change_y = -self.change_y
+            # perder energia en cada rebote
+            self.change_y = -self.change_y * 0.85
+
         elif self.top > HEIGHT:
             self.top = HEIGHT
             self.change_y = -self.change_y
 
+class Wanderer(arcade.Sprite):
+    def __init__(self, x, y):
+        super().__init__(
+            r"Git de clase\infografia-1-2026\3._sprites\img\coin.png",
+            scale=0.20,
+            center_x=x,
+            center_y=y,
+        )
+
+        self.color = arcade.color.SKY_BLUE
+
+        self.change_x = random.uniform(-200, 200)
+        self.change_y = random.uniform(-200, 200)
+
+        # tiempo hasta cambiar direccion
+        self.timer = random.uniform(0.5, 2.0)
+
+    def update(self, delta_time):
+
+        self.timer -= delta_time
+
+        if self.timer <= 0:
+
+            self.change_x = random.uniform(-250, 250)
+            self.change_y = random.uniform(-250, 250)
+
+            self.timer = random.uniform(0.5, 2.0)
+
+        self.center_x += self.change_x * delta_time
+        self.center_y += self.change_y * delta_time
+
+        self.angle += 120 * delta_time
+
+        if self.right < 0:
+            self.left = WIDTH
+
+        elif self.left > WIDTH:
+            self.right = 0
+
+        if self.top < 0:
+            self.bottom = HEIGHT
+
+        elif self.bottom > HEIGHT:
+            self.top = 0
 
 class BouncerView(arcade.View):
     def __init__(self):
         super().__init__()
         self.background_color = arcade.color.DARK_SLATE_GRAY
         self.sprites = arcade.SpriteList()
-        # arrancar con un par para que se vea algo desde el frame 0
-        for _ in range(3):
-            self.spawn_one(WIDTH // 2, HEIGHT // 2)
 
-    def spawn_one(self, x, y):
-        vx = random.uniform(-300, 300)
-        vy = random.uniform(-300, 300)
-        self.sprites.append(Bouncer(x, y, vx, vy))
+        # arrancar con algunos objetos mezclados
+        for _ in range(4):
+
+            self.spawn_bouncer(
+                WIDTH // 2,
+                HEIGHT // 2
+            )
+
+        for _ in range(3):
+
+            self.spawn_wanderer(
+                random.randint(100, WIDTH - 100),
+                random.randint(100, HEIGHT - 100),
+            )
+
+    def spawn_bouncer(self, x, y):
+
+        vx = random.uniform(-350, 350)
+        vy = random.uniform(100, 500)
+
+        self.sprites.append(
+            Bouncer(x, y, vx, vy)
+        )
+
+    def spawn_wanderer(self, x, y):
+
+        self.sprites.append(
+            Wanderer(x, y)
+        )
 
     def on_mouse_press(self, x, y, button, modifiers):
-        self.spawn_one(x, y)
+
+        # click izquierdo -> bouncer
+        if button == arcade.MOUSE_BUTTON_LEFT:
+
+            self.spawn_bouncer(x, y)
+
+        # click derecho -> wanderer
+        elif button == arcade.MOUSE_BUTTON_RIGHT:
+
+            self.spawn_wanderer(x, y)
 
     def on_update(self, delta_time):
-        # la View no sabe que hacen los sprites; solo dispara update.
+
+        # polimorfismo:
+        # cada sprite ejecuta SU version de update()
         self.sprites.update(delta_time)
 
     def on_draw(self):
         self.clear()
         self.sprites.draw()
         arcade.draw_text(
-            f"{len(self.sprites)} bouncers   (click izquierdo = agregar)",
-            10, HEIGHT - 30, arcade.color.WHITE, 16,
+            f"{len(self.sprites)} sprites",
+            10,
+            HEIGHT - 30,
+            arcade.color.WHITE,
+            18,
+        )
+
+        arcade.draw_text(
+            "click izquierdo = Bouncer",
+            10,
+            HEIGHT - 60,
+            arcade.color.YELLOW,
+            16,
+        )
+
+        arcade.draw_text(
+            "click derecho = Wanderer",
+            10,
+            HEIGHT - 90,
+            arcade.color.SKY_BLUE,
+            16,
         )
 
 
 def main():
-    window = arcade.Window(WIDTH, HEIGHT, TITLE)
-    window.show_view(BouncerView())
+
+    window = arcade.Window(
+        WIDTH,
+        HEIGHT,
+        TITLE
+    )
+
+    window.show_view(
+        BouncerView()
+    )
+
     arcade.run()
 
 

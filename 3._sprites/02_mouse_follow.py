@@ -7,40 +7,82 @@
 # mientras mas lejos esta el objetivo, mas rapido se mueve. al
 # acercarse, frena solo. eso es interpolacion lineal hacia un punto.
 
+import math
 import arcade
 
 WIDTH = 1280
 HEIGHT = 720
 TITLE = "02 - sprite que sigue al mouse"
-FOLLOW_SPEED = 5.0  # 1/segundos. mas alto = mas rapido.
+
+# velocidad constante en pixeles/segundo
+FOLLOW_SPEED = [150, 250, 350, 500]
 
 
 class FollowView(arcade.View):
     def __init__(self):
         super().__init__()
         self.background_color = arcade.color.DARK_SLATE_GRAY
-        self.player = arcade.Sprite(
-            "3._sprites/img/mario.png", scale=0.3,
-            center_x=WIDTH // 2, center_y=HEIGHT // 2,
-        )
-        self.target_x = self.player.center_x
-        self.target_y = self.player.center_y
+
+        self.players = arcade.SpriteList()
+
+        # crear varios sprites
+        for speed in FOLLOW_SPEED:
+            player = arcade.Sprite(
+                r"Git de clase\infografia-1-2026\3._sprites\img\mario.png",
+                scale=0.25,
+                center_x=WIDTH // 2,
+                center_y=HEIGHT // 2,
+            )
+
+            # guardar velocidad individual
+            player.speed = speed
+
+            self.players.append(player)
+
+        # objetivo inicial
+        self.target_x = WIDTH // 2
+        self.target_y = HEIGHT // 2
 
     def on_mouse_motion(self, x, y, dx, dy):
-        # arcade llama esto cada vez que el mouse se mueve.
-        # solo guardamos el objetivo; movernos lo hace on_update.
+
+        # guardar posicion objetivo
         self.target_x = x
         self.target_y = y
 
     def on_update(self, delta_time):
-        self.player.center_x += (self.target_x - self.player.center_x) * FOLLOW_SPEED * delta_time
-        self.player.center_y += (self.target_y - self.player.center_y) * FOLLOW_SPEED * delta_time
+
+        for player in self.players:
+
+            dx = self.target_x - player.center_x
+            dy = self.target_y - player.center_y
+
+            # distancia al objetivo
+            distance = math.sqrt(dx**2 + dy**2)
+
+            # evitar division por cero
+            if distance > 1:
+
+                direction_x = dx / distance
+                direction_y = dy / distance
+
+                player.center_x += direction_x * player.speed * delta_time
+                player.center_y += direction_y * player.speed * delta_time
+
+                player.angle = math.degrees(math.atan2(dy, dx))
 
     def on_draw(self):
         self.clear()
-        # dibujar el objetivo como una marca chica, para ver el "tirar de cuerda"
-        arcade.draw_circle_outline(self.target_x, self.target_y, 10, arcade.color.YELLOW, 2)
-        arcade.draw_sprite(self.player)
+        # dibujar objetivo
+        arcade.draw_circle_outline(
+            self.target_x,
+            self.target_y,
+            10,
+            arcade.color.YELLOW,
+            2
+        )
+
+        # dibujar sprites
+        self.players.draw()
 
 
 def main():
