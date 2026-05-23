@@ -101,7 +101,7 @@ class CollisionView(arcade.View):
         self.space.add(body, shape)
         self.pegs.append((x, y, r))
 
-    def spawn_ball(self, x = None, y = None):
+    def spawn_ball(self, x = None, y = None, init_velocity = (0, 0)):
         # si habia una pelota anterior, sacarla del espacio
         if self.ball_body is not None:
             self.space.remove(self.ball_body, self.ball_shape)
@@ -111,6 +111,9 @@ class CollisionView(arcade.View):
             body.position = (x, y)
         else:
             body.position = (random.randint(80, WIDTH - 80), HEIGHT - 40)
+        
+        body.velocity = init_velocity
+
         shape = pymunk.Circle(body, 12)
         shape.elasticity = 0.7
         shape.friction = 0.3
@@ -124,9 +127,16 @@ class CollisionView(arcade.View):
         # self.spawn_ball(x, y)
         spawn_x = int(WIDTH//2 + 40 * math.cos(-self.canyon.radians - math.pi/2))
         spawn_y = int(HEIGHT - 40 + 40 * math.sin(-self.canyon.radians - math.pi/2))
+
+        # calculo de la velocidad
+        MAX_VEL = 400
+        vel_x = int(MAX_VEL * math.cos(-self.canyon.radians - math.pi/2)) 
+        vel_y = int(MAX_VEL * math.sin(-self.canyon.radians - math.pi/2))
+
         self.spawn_ball(
             spawn_x,
-            spawn_y
+            spawn_y,
+            (vel_x, vel_y)
         )
 
     def on_mouse_motion(self, x, y, dx, dy):
