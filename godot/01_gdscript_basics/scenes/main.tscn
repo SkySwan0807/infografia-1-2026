@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1xh1ukisiwnh"]
+
+[ext_resource type="PackedScene" uid="uid://bqxjfikgdn1qi" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://pqd2t1vte5p3" path="res://scenes/enemy.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://cpblr8fvmnjen" path="res://scenes/coin.tscn" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://dxjil2vbwxa0g" path="res://scripts/control.gd" id="4_jyhfs"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_o5qli")]
+position = Vector2(184, 303)
+
+[node name="Enemy" parent="." instance=ExtResource("2_0wfyh")]
+position = Vector2(740, 310)
+
+[node name="Coin" parent="." groups=["coin"] instance=ExtResource("3_sugp2")]
+position = Vector2(337, 313)
+
+[node name="Coin2" parent="." groups=["coin"] instance=ExtResource("3_sugp2")]
+position = Vector2(421, 312)
+
+[node name="Coin3" parent="." groups=["coin"] instance=ExtResource("3_sugp2")]
+position = Vector2(505, 313)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1153.0
+offset_bottom = 108.0
+script = ExtResource("4_jyhfs")
+
+[node name="Score" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 23.0
+offset_right = 173.0
+offset_bottom = 46.0
+text = "SCORE"
