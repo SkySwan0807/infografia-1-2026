@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dmfh2g0obktw2"]
+
+[ext_resource type="Texture2D" uid="uid://doj3a8ghic1pn" path="res://assets/textures/mario.png" id="1_l6tho"]
+[ext_resource type="Script" uid="uid://bih26lnttfc7t" path="res://scenes/player_2.gd" id="1_s551d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s551d"]
+radius = 48.0
+height = 238.0
+
+[node name="Player2" type="CharacterBody2D" unique_id=398133454]
+script = ExtResource("1_s551d")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=784213080]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_l6tho")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1678013642]
+position = Vector2(-3, 9)
+shape = SubResource("CapsuleShape2D_s551d")
