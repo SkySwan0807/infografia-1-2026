@@ -25,6 +25,6 @@ def get_line(x0: int, y0: int, x1: int, y1: int) -> list[tuple[int, int]]:
 if __name__ == "__main__":
     from visualize import show
 
-    p0, p1 = (5, 5), (50, 25)
+    p0, p1 = (5, 50), (20, 20)
     pixels = get_line(*p0, *p1)
     show(pixels, title="Bresenham (un octante)", endpoints=[p0, p1])

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://y40yvcu5bssa"]
+
+[ext_resource type="Script" uid="uid://q4a0iaptagr5" path="res://scripts/timer_example.gd" id="1_ka646"]
+[ext_resource type="Texture2D" uid="uid://dy2dqujk2g73t" path="res://assets/textures/bomb.png" id="2_0j2jr"]
+
+[node name="TimerExample" type="Node2D"]
+script = ExtResource("1_ka646")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(552, 312)
+scale = Vector2(5, 5)
+texture = ExtResource("2_0j2jr")
