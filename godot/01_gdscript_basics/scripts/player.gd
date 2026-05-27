@@ -11,7 +11,7 @@ func _ready() -> void:
 	print("health: ", health)
 
 func _physics_process(delta: float) -> void:
-	var direction = Input.get_axis("ui_left", "ui_right")
+	var direction = Input.get_axis("Left", "Right")
 
 	if direction:
 		velocity.x = direction * speed
