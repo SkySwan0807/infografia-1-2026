@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://db2ex2scene001"]
+
+[ext_resource type="Script" uid="uid://cb2dash0000001" path="res://exercises/ex2_dash.gd" id="1_dash"]
+[ext_resource type="Texture2D" uid="uid://doj3a8ghic1pn" path="res://assets/textures/mario.png" id="2_mario"]
+[ext_resource type="Texture2D" uid="uid://cea3te14vrj1f" path="res://assets/textures/coin.png" id="3_coin"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_player"]
+radius = 40.0
+
+[node name="Ex2Dash" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(576, 324)
+script = ExtResource("1_dash")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_mario")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CircleShape2D_player")
+
+[node name="Landmarks" type="Node2D" parent="."]
+
+[node name="Coin1" type="Sprite2D" parent="Landmarks"]
+position = Vector2(180, 200)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("3_coin")
+
+[node name="Coin2" type="Sprite2D" parent="Landmarks"]
+position = Vector2(960, 460)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("3_coin")
