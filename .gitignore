@@ -1,1 +1,73 @@
 /2._arcade/2.1._algorithms/__pycache__
+# =========================
+# Godot
+# =========================
+
+# Carpeta de importaciones generadas automaticamente
+.import/
+
+# Archivos temporales
+.export/
+export_presets.cfg
+
+# Archivos de caché
+*.translation
+*.tmp
+
+# Archivos de compilacion C#
+.mono/
+data_*/
+mono_crash.*
+
+# Builds exportados
+bin/
+build/
+dist/
+
+# Logs
+logs/
+*.log
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VS Code
+.vscode/
+
+# JetBrains
+.idea/
+
+# Visual Studio
+.vs/
+*.csproj
+*.sln
+*.user
+*.userprefs
+
+# Archivos de respaldo
+*~
+*.bak
+*.swp
+
+# Archivos de testing
+coverage/
+
+# Dependencias opcionales
+node_modules/
+
+# =========================
+# Godot 4 especifico
+# =========================
+
+.godot/
+*.md5
+
+# =========================
+# Archivos que SI deben subirse
+# =========================
+# project.godot
+# scenes/
+# scripts/
+# assets/

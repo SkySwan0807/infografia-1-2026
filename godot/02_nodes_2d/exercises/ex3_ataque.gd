@@ -46,14 +46,20 @@ func _estado_mover(_delta: float) -> void:
 	#   velocity = Vector2.ZERO
 	#   timer.start()        # el Timer define cuanto dura el ataque
 	#   print("atacando!")
+	if Input.is_action_just_pressed("atacar"):
+		estado = Estado.ATACAR
+		velocity = Vector2.ZERO
+		timer.start()
+		print("atacando!")
 
 func _estado_atacar(_delta: float) -> void:
 	# TODO 2: durante el ataque el jugador esta quieto.
 	#   velocity = Vector2.ZERO
 	#   move_and_slide()
-	pass
+	velocity = Vector2.ZERO
+	move_and_slide()
 
 func _on_timer_timeout() -> void:
 	# TODO 3: el ataque termino -> volver a MOVER
 	#   estado = Estado.MOVER
-	pass
+	estado = Estado.MOVER
