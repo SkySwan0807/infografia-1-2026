@@ -26,6 +26,10 @@ func _physics_process(_delta: float) -> void:
 	var velocidad_actual := speed
 	# TODO 1: si "correr" esta presionada, velocidad_actual = speed_corriendo
 	#   pista: if Input.is_action_pressed("correr"):
+	
+	if Input.is_action_pressed("correr"):
+		velocidad_actual = speed_corriendo
+	
 
 	velocity = direccion * velocidad_actual
 	move_and_slide()

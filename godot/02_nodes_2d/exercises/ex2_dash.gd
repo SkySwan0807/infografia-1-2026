@@ -42,15 +42,25 @@ func _physics_process(delta: float) -> void:
 	#   entonces: _dash_restante = dash_tiempo
 	#             _dash_dir = direccion
 	#             _cooldown_restante = dash_cooldown
+	if (
+		Input.is_action_just_pressed("dash") 
+		and _dash_restante <= 0
+		and _cooldown_restante <=0
+		and direccion != Vector2.ZERO
+		):
+		_dash_restante = dash_tiempo
+		_dash_dir = direccion
+		_cooldown_restante = dash_cooldown
 
 	if _dash_restante > 0.0:
 		# TODO 2: estamos en dash
 		#   velocity = _dash_dir * dash_speed
 		#   _dash_restante -= delta
-		pass
+		velocity = _dash_dir * dash_speed
+		_dash_restante -= delta
 	else:
 		# TODO 3: movimiento normal
 		#   velocity = direccion * speed
-		pass
+		velocity = direccion * speed
 
 	move_and_slide()

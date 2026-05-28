@@ -6,3 +6,7 @@ res://scenes/03_camara.tscn
 res://scenes/04_input_separado.tscn
 res://scripts/ai_control.gd
 res://scripts/jugador_body.gd
+res://exercises/ex1_correr.tscn
+res://exercises/ex1_correr.gd
+res://exercises/ex2_dash.tscn
+res://exercises/ex2_dash.gd
