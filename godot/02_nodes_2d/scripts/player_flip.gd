@@ -11,6 +11,7 @@ extends CharacterBody2D
 @export var speed: float = 200.0
 @onready var sprite: Sprite2D = $Sprite2D
 
+
 func _physics_process(_delta: float) -> void:
 	var direccion := Vector2.ZERO
 	direccion.x = Input.get_axis("izquierda", "derecha")
@@ -19,7 +20,12 @@ func _physics_process(_delta: float) -> void:
 
 	velocity = direccion * speed
 	move_and_slide()
-
+	
+	if direccion.x < 0:
+		sprite.flip_h = true
+	elif direccion.x > 0:
+		sprite.flip_h = false
+		
 	# TODO (en clase): voltear el sprite segun la direccion horizontal.
 	#   - si direccion.x < 0  -> mirar a la izquierda  (sprite.flip_h = true)
 	#   - si direccion.x > 0  -> mirar a la derecha     (sprite.flip_h = false)

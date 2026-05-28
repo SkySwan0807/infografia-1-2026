@@ -1,43 +1,43 @@
-[gd_scene load_steps=5 format=3 uid="uid://db2scene010001"]
+[gd_scene format=3 uid="uid://dk6o16ihdrab5"]
 
-[ext_resource type="Script" uid="uid://cb2movimiento1" path="res://scripts/player_movimiento.gd" id="1_mov"]
+[ext_resource type="Script" uid="uid://ia1ah2x7022a" path="res://scripts/player_movimiento.gd" id="1_mov"]
 [ext_resource type="Texture2D" uid="uid://doj3a8ghic1pn" path="res://assets/textures/mario.png" id="2_mario"]
 [ext_resource type="Texture2D" uid="uid://cea3te14vrj1f" path="res://assets/textures/coin.png" id="3_coin"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_player"]
-radius = 40.0
+radius = 42.755116
 
-[node name="Movimiento" type="Node2D"]
+[node name="Movimiento" type="Node2D" unique_id=909471919]
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=256774514]
 position = Vector2(576, 324)
 script = ExtResource("1_mov")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1369716890]
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_mario")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1545204081]
 shape = SubResource("CircleShape2D_player")
 
-[node name="Landmarks" type="Node2D" parent="."]
+[node name="Landmarks" type="Node2D" parent="." unique_id=538911299]
 
-[node name="Coin1" type="Sprite2D" parent="Landmarks"]
+[node name="Coin1" type="Sprite2D" parent="Landmarks" unique_id=1010592917]
 position = Vector2(200, 150)
 scale = Vector2(0.12, 0.12)
 texture = ExtResource("3_coin")
 
-[node name="Coin2" type="Sprite2D" parent="Landmarks"]
+[node name="Coin2" type="Sprite2D" parent="Landmarks" unique_id=1352336149]
 position = Vector2(950, 180)
 scale = Vector2(0.12, 0.12)
 texture = ExtResource("3_coin")
 
-[node name="Coin3" type="Sprite2D" parent="Landmarks"]
+[node name="Coin3" type="Sprite2D" parent="Landmarks" unique_id=1520221650]
 position = Vector2(300, 520)
 scale = Vector2(0.12, 0.12)
 texture = ExtResource("3_coin")
 
-[node name="Coin4" type="Sprite2D" parent="Landmarks"]
+[node name="Coin4" type="Sprite2D" parent="Landmarks" unique_id=1110518441]
 position = Vector2(880, 500)
 scale = Vector2(0.12, 0.12)
 texture = ExtResource("3_coin")

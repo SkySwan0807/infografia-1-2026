@@ -9,15 +9,22 @@
 extends CharacterBody2D
 
 @export var speed: float = 200.0
+@export var run_speed: float = 400.0
 
 func _physics_process(_delta: float) -> void:
 	# cada eje devuelve -1, 0 o +1
 	var direccion := Vector2.ZERO
 	direccion.x = Input.get_axis("izquierda", "derecha")
 	direccion.y = Input.get_axis("arriba", "abajo")
+	
+	print("RAW: ", direccion)
 
 	# sin esto, la diagonal mide sqrt(2) y el jugador va mas rapido en diagonal
 	direccion = direccion.normalized()
-
-	velocity = direccion * speed
+	print("NORM: ", direccion)
+	if Input.is_action_pressed("correr"):
+		velocity = direccion * run_speed
+	else:
+		velocity = direccion * speed
+		
 	move_and_slide()
