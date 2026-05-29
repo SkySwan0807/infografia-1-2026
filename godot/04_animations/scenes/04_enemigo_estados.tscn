@@ -1,0 +1,367 @@
+[gd_scene load_steps=36 format=3 uid="uid://c04anim03enemi"]
+
+[ext_resource type="Script" path="res://scripts/exercises/enemigo_estados.gd" id="1_enem"]
+[ext_resource type="Texture2D" uid="uid://kk71xb6np3po" path="res://assets/textures/Enemies/Bat.png" id="2_tex"]
+[ext_resource type="PackedScene" uid="uid://148x0po66lyy" path="res://scenes/hit_box.tscn" id="3_hit"]
+[ext_resource type="PackedScene" uid="uid://bqukdayhq6fby" path="res://scenes/hurt_box.tscn" id="4_hurt"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="5_health"]
+[ext_resource type="PackedScene" uid="uid://cckfj5hq788cj" path="res://scenes/player.tscn" id="6_player"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0"]
+atlas = ExtResource("2_tex")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1"]
+atlas = ExtResource("2_tex")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2"]
+atlas = ExtResource("2_tex")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3"]
+atlas = ExtResource("2_tex")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4"]
+atlas = ExtResource("2_tex")
+region = Rect2(64, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bat"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="Animation" id="Animation_fly"]
+resource_name = "fly"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_attack"]
+resource_name = "attack"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.4, 1.4), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_anim_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_hurt"]
+resource_name = "hurt"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.3, 0.3, 1), Color(1, 0.3, 0.3, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hurt_anim_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_die"]
+resource_name = "die"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.4, 0.4, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.2, 0.2)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"die_anim_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_reset"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_enem"]
+_data = {
+&"RESET": SubResource("Animation_reset"),
+&"attack": SubResource("Animation_attack"),
+&"die": SubResource("Animation_die"),
+&"fly": SubResource("Animation_fly"),
+&"hurt": SubResource("Animation_hurt")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="ANA_fly"]
+animation = &"fly"
+
+[sub_resource type="AnimationNodeAnimation" id="ANA_attack"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="ANA_hurt"]
+animation = &"hurt"
+
+[sub_resource type="AnimationNodeAnimation" id="ANA_die"]
+animation = &"die"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="T_start"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="T_fly_attack"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="T_attack_fly"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="T_fly_hurt"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="T_hurt_fly"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="T_attack_hurt"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="T_fly_die"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="T_attack_die"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="T_hurt_die"]
+
+[sub_resource type="AnimationNodeStateMachine" id="StateMachine_enem"]
+states/attack/node = SubResource("ANA_attack")
+states/attack/position = Vector2(440, 100)
+states/die/node = SubResource("ANA_die")
+states/die/position = Vector2(440, 280)
+states/fly/node = SubResource("ANA_fly")
+states/fly/position = Vector2(240, 190)
+states/hurt/node = SubResource("ANA_hurt")
+states/hurt/position = Vector2(440, 190)
+transitions = ["Start", "fly", SubResource("T_start"), "fly", "attack", SubResource("T_fly_attack"), "attack", "fly", SubResource("T_attack_fly"), "fly", "hurt", SubResource("T_fly_hurt"), "hurt", "fly", SubResource("T_hurt_fly"), "attack", "hurt", SubResource("T_attack_hurt"), "fly", "die", SubResource("T_fly_die"), "attack", "die", SubResource("T_attack_die"), "hurt", "die", SubResource("T_hurt_die")]
+graph_offset = Vector2(0, 40)
+
+[sub_resource type="CapsuleShape2D" id="Capsule_body"]
+radius = 2.0
+height = 12.0
+
+[sub_resource type="CircleShape2D" id="Circle_hit"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="Circle_hurt"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="Circle_det"]
+radius = 60.0
+
+[node name="SalaEnemigo" type="Node2D"]
+
+[node name="Fondo" type="ColorRect" parent="."]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.12, 0.13, 0.18, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 314.0
+offset_bottom = 24.0
+text = "Movete con WASD/flechas, atacá con ESPACIO. Dale vida a la máquina del enemigo."
+
+[node name="Player" parent="." instance=ExtResource("6_player")]
+position = Vector2(70, 96)
+
+[node name="Enemigo" type="CharacterBody2D" parent="."]
+position = Vector2(240, 96)
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("1_enem")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemigo"]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_bat")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo"]
+position = Vector2(0, -2)
+rotation = 1.5708
+shape = SubResource("Capsule_body")
+
+[node name="HitBox" parent="Enemigo" instance=ExtResource("3_hit")]
+collision_layer = 32
+collision_mask = 0
+damage = 10
+
+[node name="CollisionShape2D" parent="Enemigo/HitBox" index="0"]
+position = Vector2(0, -14)
+shape = SubResource("Circle_hit")
+
+[node name="HurtBox" parent="Enemigo" instance=ExtResource("4_hurt")]
+collision_layer = 64
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="Enemigo/HurtBox" index="0"]
+position = Vector2(0, -14)
+shape = SubResource("Circle_hurt")
+
+[node name="DetectionArea" type="Area2D" parent="Enemigo"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo/DetectionArea"]
+position = Vector2(0, -14)
+shape = SubResource("Circle_det")
+debug_color = Color(0.31, 0.5, 0.99, 0.15)
+
+[node name="Health" type="Node" parent="Enemigo"]
+script = ExtResource("5_health")
+max_health = 40
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemigo"]
+libraries = {
+&"": SubResource("AnimationLibrary_enem")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Enemigo"]
+tree_root = SubResource("StateMachine_enem")
+anim_player = NodePath("../AnimationPlayer")
+
+[connection signal="area_entered" from="Enemigo/HurtBox" to="Enemigo" method="_on_hurt_box_area_entered"]
+[connection signal="area_entered" from="Enemigo/DetectionArea" to="Enemigo" method="_on_detection_area_area_entered"]
+[connection signal="area_exited" from="Enemigo/DetectionArea" to="Enemigo" method="_on_detection_area_area_exited"]
+
+[editable path="Enemigo/HitBox"]
+[editable path="Enemigo/HurtBox"]

@@ -1,7 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://ds3gravedad001"]
+[gd_scene format=3 uid="uid://basry4vjq3vjc"]
 
-[ext_resource type="Script" uid="uid://cs3pgravedad01" path="res://scripts/player_gravedad.gd" id="1_pg"]
+[ext_resource type="Script" uid="uid://b2qbr1ntws4c7" path="res://scripts/player_gravedad.gd" id="1_pg"]
 [ext_resource type="Texture2D" uid="uid://cr1sfoac4lxg5" path="res://assets/textures/player_idle.png" id="2_player"]
+[ext_resource type="Texture2D" uid="uid://wnv81dt40220" path="res://assets/textures/gem.png" id="3_7k27o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_titulo"]
+font_size = 20
 
 [sub_resource type="RectangleShape2D" id="Rect_floor"]
 size = Vector2(1280, 40)
@@ -12,20 +16,21 @@ size = Vector2(20, 720)
 [sub_resource type="RectangleShape2D" id="Rect_platform"]
 size = Vector2(200, 30)
 
-[sub_resource type="RectangleShape2D" id="Rect_player"]
-size = Vector2(50, 80)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_su6vu"]
+radius = 15.0
+height = 40.0
 
-[sub_resource type="LabelSettings" id="LabelSettings_titulo"]
-font_size = 20
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ronac"]
+size = Vector2(40, 35)
 
-[node name="GravedadYSalto" type="Node2D"]
+[node name="GravedadYSalto" type="Node2D" unique_id=1259798123]
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1642701851]
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.55, 0.75, 0.85, 1)
 
-[node name="Titulo" type="Label" parent="."]
+[node name="Titulo" type="Label" parent="." unique_id=701018126]
 offset_left = 40.0
 offset_top = 16.0
 offset_right = 1240.0
@@ -34,89 +39,95 @@ text = "02 · Gravedad + salto (CharacterBody2D) — A/D mover, Espacio saltar"
 label_settings = SubResource("LabelSettings_titulo")
 horizontal_alignment = 1
 
-[node name="Mundo" type="Node2D" parent="."]
+[node name="Mundo" type="Node2D" parent="." unique_id=1254807418]
 
-[node name="Floor" type="StaticBody2D" parent="Mundo"]
+[node name="Floor" type="StaticBody2D" parent="Mundo" unique_id=898866302]
 position = Vector2(640, 700)
-collision_layer = 1
 collision_mask = 0
 
-[node name="Visual" type="Polygon2D" parent="Mundo/Floor"]
+[node name="Visual" type="Polygon2D" parent="Mundo/Floor" unique_id=62801053]
 color = Color(0.35, 0.27, 0.2, 1)
 polygon = PackedVector2Array(-640, -20, 640, -20, 640, 20, -640, 20)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Floor"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Floor" unique_id=934716865]
 shape = SubResource("Rect_floor")
 
-[node name="WallLeft" type="StaticBody2D" parent="Mundo"]
+[node name="WallLeft" type="StaticBody2D" parent="Mundo" unique_id=818309763]
 position = Vector2(10, 360)
-collision_layer = 1
 collision_mask = 0
 
-[node name="Visual" type="Polygon2D" parent="Mundo/WallLeft"]
+[node name="Visual" type="Polygon2D" parent="Mundo/WallLeft" unique_id=1518359188]
 color = Color(0.3, 0.25, 0.2, 1)
 polygon = PackedVector2Array(-10, -360, 10, -360, 10, 360, -10, 360)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/WallLeft"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/WallLeft" unique_id=1840770250]
 shape = SubResource("Rect_wall")
 
-[node name="WallRight" type="StaticBody2D" parent="Mundo"]
+[node name="WallRight" type="StaticBody2D" parent="Mundo" unique_id=699463185]
 position = Vector2(1270, 360)
-collision_layer = 1
 collision_mask = 0
 
-[node name="Visual" type="Polygon2D" parent="Mundo/WallRight"]
+[node name="Visual" type="Polygon2D" parent="Mundo/WallRight" unique_id=1582403253]
 color = Color(0.3, 0.25, 0.2, 1)
 polygon = PackedVector2Array(-10, -360, 10, -360, 10, 360, -10, 360)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/WallRight"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/WallRight" unique_id=1070855157]
 shape = SubResource("Rect_wall")
 
-[node name="Platform1" type="StaticBody2D" parent="Mundo"]
+[node name="Platform1" type="StaticBody2D" parent="Mundo" unique_id=626747408]
 position = Vector2(400, 540)
-collision_layer = 1
 collision_mask = 0
 
-[node name="Visual" type="Polygon2D" parent="Mundo/Platform1"]
+[node name="Visual" type="Polygon2D" parent="Mundo/Platform1" unique_id=1430130373]
 color = Color(0.45, 0.32, 0.22, 1)
 polygon = PackedVector2Array(-100, -15, 100, -15, 100, 15, -100, 15)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Platform1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Platform1" unique_id=1695618698]
 shape = SubResource("Rect_platform")
 
-[node name="Platform2" type="StaticBody2D" parent="Mundo"]
+[node name="Platform2" type="StaticBody2D" parent="Mundo" unique_id=1423619069]
 position = Vector2(880, 420)
-collision_layer = 1
 collision_mask = 0
 
-[node name="Visual" type="Polygon2D" parent="Mundo/Platform2"]
+[node name="Visual" type="Polygon2D" parent="Mundo/Platform2" unique_id=2128434061]
 color = Color(0.45, 0.32, 0.22, 1)
 polygon = PackedVector2Array(-100, -15, 100, -15, 100, 15, -100, 15)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Platform2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Platform2" unique_id=1201527361]
 shape = SubResource("Rect_platform")
 
-[node name="Platform3" type="StaticBody2D" parent="Mundo"]
+[node name="Platform3" type="StaticBody2D" parent="Mundo" unique_id=1346571624]
 position = Vector2(620, 280)
-collision_layer = 1
 collision_mask = 0
 
-[node name="Visual" type="Polygon2D" parent="Mundo/Platform3"]
+[node name="Visual" type="Polygon2D" parent="Mundo/Platform3" unique_id=1500207186]
 color = Color(0.45, 0.32, 0.22, 1)
 polygon = PackedVector2Array(-100, -15, 100, -15, 100, 15, -100, 15)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Platform3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Platform3" unique_id=1423096995]
 shape = SubResource("Rect_platform")
 
-[node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(200, 600)
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1753200123]
+position = Vector2(146, 46)
 collision_layer = 2
-collision_mask = 1
 script = ExtResource("1_pg")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=942046751]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_player")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource("Rect_player")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=780473436]
+position = Vector2(-1, 12)
+shape = SubResource("CapsuleShape2D_su6vu")
+debug_color = Color(0.74821746, 0.20529893, 0.99999994, 0.41960785)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1442429774]
+position = Vector2(445, 75)
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=1346290130]
+texture = ExtResource("3_7k27o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=1922780152]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_ronac")
+debug_color = Color(0, 0.6313225, 0.46671236, 0.41960785)

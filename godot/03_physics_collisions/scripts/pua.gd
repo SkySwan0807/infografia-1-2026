@@ -19,4 +19,4 @@ func _on_body_entered(body: Node) -> void:
 	# TODO: el body que entra es el jugador.
 	#   pista: el jugador tiene metodo body.recibir_dano()
 	#   (a diferencia de la moneda, la pua NO se elimina: queda como peligro permanente)
-	pass
+	body.recibir_dano()

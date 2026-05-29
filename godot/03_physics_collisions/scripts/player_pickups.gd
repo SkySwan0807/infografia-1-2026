@@ -4,7 +4,7 @@
 # sumar_moneda() y recibir_dano() son los puntos de entrada que usan
 # las monedas y las puas. Cada Area2D detecta al jugador, busca al
 # objeto y llama al metodo correspondiente.
-
+class_name Player
 extends CharacterBody2D
 
 const GRAVEDAD: float = 1200.0

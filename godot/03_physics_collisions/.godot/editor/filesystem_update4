@@ -1,0 +1,8 @@
+res://scenes/02_gravedad_y_salto.tscn
+res://scripts/player_gravedad.gd
+res://scenes/03_pickups_y_hazards.tscn
+res://scripts/moneda.gd
+res://scripts/pua.gd
+res://scenes/04_layers_fantasma.tscn
+res://scripts/fantasma.gd
+res://scripts/player_pickups.gd
