@@ -63,6 +63,7 @@ node_modules/
 
 .godot/
 *.md5
+*.import
 
 # =========================
 # Archivos que SI deben subirse
