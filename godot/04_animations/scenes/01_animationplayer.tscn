@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bdhrdaxyuqijn"]
+
+[ext_resource type="Script" uid="uid://bibvcb2xbbj6" path="res://scripts/flipbook.gd" id="1_flip"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l35xg"]
+load_path = "res://.godot/imported/Player.png-029717b848841dec1716ad33afab10c2.ctex"
+
+[sub_resource type="Animation" id="Animation_reset"]
+resource_name = "RESET"
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_caminar"]
+resource_name = "caminar"
+length = 0.6
+loop_mode = 1
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_rebote"]
+resource_name = "rebote"
+length = 0.5
+step = 0.05
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_flip"]
+_data = {
+&"RESET": SubResource("Animation_reset"),
+&"caminar": SubResource("Animation_caminar"),
+&"rebote": SubResource("Animation_rebote")
+}
+
+[node name="Flipbook" type="Node2D" unique_id=1755272487]
+script = ExtResource("1_flip")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=77656589]
+position = Vector2(160, 96)
+scale = Vector2(4, 4)
+texture = SubResource("CompressedTexture2D_l35xg")
+hframes = 60
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=427887030]
+libraries/ = SubResource("AnimationLibrary_flip")
+
+[node name="Label" type="Label" parent="." unique_id=921381025]
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 314.0
+offset_bottom = 24.0
+text = "ESPACIO = rebote  (anima scale + modulate)"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

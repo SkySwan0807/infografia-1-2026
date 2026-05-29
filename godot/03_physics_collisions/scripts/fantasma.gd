@@ -23,3 +23,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	if is_on_wall():
 		direccion_x = -direccion_x
+		
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("colision")
+	if body is Player:
+		print("player")
+		set_collision_mask_value(3, true)

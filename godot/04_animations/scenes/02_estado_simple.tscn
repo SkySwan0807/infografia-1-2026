@@ -1,0 +1,168 @@
+[gd_scene load_steps=18 format=3 uid="uid://c04anim02estado"]
+
+[ext_resource type="Script" path="res://scripts/estado_simple.gd" id="1_est"]
+[ext_resource type="Texture2D" uid="uid://bajjj2xy4cghw" path="res://assets/textures/Player/Player.png" id="2_tex"]
+
+[sub_resource type="Animation" id="Animation_idle"]
+resource_name = "idle"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [18]
+}
+
+[sub_resource type="Animation" id="Animation_run"]
+resource_name = "run"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [19, 20, 21, 22, 23]
+}
+
+[sub_resource type="Animation" id="Animation_attack"]
+resource_name = "attack"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [36, 37, 38, 39]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_anim_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_reset"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [18]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_est"]
+_data = {
+&"RESET": SubResource("Animation_reset"),
+&"attack": SubResource("Animation_attack"),
+&"idle": SubResource("Animation_idle"),
+&"run": SubResource("Animation_run")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="ANA_idle"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="ANA_run"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="ANA_attack"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="T_start"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="T_idle_run"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="T_run_idle"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="T_idle_attack"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="T_run_attack"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="T_attack_idle"]
+
+[sub_resource type="AnimationNodeStateMachine" id="StateMachine_est"]
+states/attack/node = SubResource("ANA_attack")
+states/attack/position = Vector2(440, 100)
+states/idle/node = SubResource("ANA_idle")
+states/idle/position = Vector2(240, 180)
+states/run/node = SubResource("ANA_run")
+states/run/position = Vector2(440, 220)
+transitions = ["Start", "idle", SubResource("T_start"), "idle", "run", SubResource("T_idle_run"), "run", "idle", SubResource("T_run_idle"), "idle", "attack", SubResource("T_idle_attack"), "run", "attack", SubResource("T_run_attack"), "attack", "idle", SubResource("T_attack_idle")]
+graph_offset = Vector2(0, 20)
+
+[sub_resource type="CapsuleShape2D" id="Capsule_body"]
+radius = 4.0
+height = 12.0
+
+[node name="EstadoSimple" type="Node2D"]
+
+[node name="Fondo" type="ColorRect" parent="."]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.12, 0.13, 0.18, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 314.0
+offset_bottom = 24.0
+text = "WASD/flechas = run/idle  ·  ESPACIO = attack  (máquina de estado, sin BlendSpace)"
+
+[node name="Personaje" type="CharacterBody2D" parent="."]
+position = Vector2(160, 96)
+script = ExtResource("1_est")
+
+[node name="Sprite2D" type="Sprite2D" parent="Personaje"]
+position = Vector2(0, -9)
+texture = ExtResource("2_tex")
+hframes = 60
+frame = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Personaje"]
+rotation = -1.5708
+shape = SubResource("Capsule_body")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Personaje"]
+libraries = {
+&"": SubResource("AnimationLibrary_est")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Personaje"]
+tree_root = SubResource("StateMachine_est")
+anim_player = NodePath("../AnimationPlayer")

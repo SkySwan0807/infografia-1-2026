@@ -1,10 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://ds3pickups0001"]
+[gd_scene format=3 uid="uid://ba2i1tdwbqvjc"]
 
 [ext_resource type="Script" uid="uid://cs3ppickups01" path="res://scripts/player_pickups.gd" id="1_pp"]
 [ext_resource type="Texture2D" uid="uid://cr1sfoac4lxg5" path="res://assets/textures/player_idle.png" id="2_player"]
-[ext_resource type="Script" uid="uid://cs3hudmoneda01" path="res://scripts/hud_monedas.gd" id="3_hud"]
-[ext_resource type="PackedScene" uid="uid://ds3monedasub01" path="res://scenes/moneda.tscn" id="4_moneda"]
-[ext_resource type="PackedScene" uid="uid://ds3puasub00001" path="res://scenes/pua.tscn" id="5_pua"]
+[ext_resource type="Script" uid="uid://b2ipeeg3xv1c7" path="res://scripts/hud_monedas.gd" id="3_hud"]
+[ext_resource type="PackedScene" uid="uid://baypdmuhbk6jc" path="res://scenes/moneda.tscn" id="4_moneda"]
+[ext_resource type="PackedScene" uid="uid://ba2uy2diiqvjc" path="res://scenes/pua.tscn" id="5_pua"]
 
 [sub_resource type="RectangleShape2D" id="Rect_floor"]
 size = Vector2(1280, 40)
@@ -21,128 +21,121 @@ size = Vector2(50, 80)
 [sub_resource type="LabelSettings" id="LabelSettings_hud"]
 font_size = 28
 
-[node name="PickupsYHazards" type="Node2D"]
+[node name="PickupsYHazards" type="Node2D" unique_id=1473334921]
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1781557656]
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.45, 0.65, 0.78, 1)
 
-[node name="Mundo" type="Node2D" parent="."]
+[node name="Mundo" type="Node2D" parent="." unique_id=138711136]
 
-[node name="Floor" type="StaticBody2D" parent="Mundo"]
+[node name="Floor" type="StaticBody2D" parent="Mundo" unique_id=1511798169]
 position = Vector2(640, 700)
-collision_layer = 1
 collision_mask = 0
 
-[node name="Visual" type="Polygon2D" parent="Mundo/Floor"]
+[node name="Visual" type="Polygon2D" parent="Mundo/Floor" unique_id=1824881619]
 color = Color(0.35, 0.27, 0.2, 1)
 polygon = PackedVector2Array(-640, -20, 640, -20, 640, 20, -640, 20)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Floor"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Floor" unique_id=1884187320]
 shape = SubResource("Rect_floor")
 
-[node name="WallLeft" type="StaticBody2D" parent="Mundo"]
+[node name="WallLeft" type="StaticBody2D" parent="Mundo" unique_id=970783123]
 position = Vector2(10, 360)
-collision_layer = 1
 collision_mask = 0
 
-[node name="Visual" type="Polygon2D" parent="Mundo/WallLeft"]
+[node name="Visual" type="Polygon2D" parent="Mundo/WallLeft" unique_id=925241171]
 color = Color(0.3, 0.25, 0.2, 1)
 polygon = PackedVector2Array(-10, -360, 10, -360, 10, 360, -10, 360)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/WallLeft"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/WallLeft" unique_id=1937947034]
 shape = SubResource("Rect_wall")
 
-[node name="WallRight" type="StaticBody2D" parent="Mundo"]
+[node name="WallRight" type="StaticBody2D" parent="Mundo" unique_id=1964751970]
 position = Vector2(1270, 360)
-collision_layer = 1
 collision_mask = 0
 
-[node name="Visual" type="Polygon2D" parent="Mundo/WallRight"]
+[node name="Visual" type="Polygon2D" parent="Mundo/WallRight" unique_id=376131070]
 color = Color(0.3, 0.25, 0.2, 1)
 polygon = PackedVector2Array(-10, -360, 10, -360, 10, 360, -10, 360)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/WallRight"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/WallRight" unique_id=79830608]
 shape = SubResource("Rect_wall")
 
-[node name="Platform1" type="StaticBody2D" parent="Mundo"]
+[node name="Platform1" type="StaticBody2D" parent="Mundo" unique_id=1357029525]
 position = Vector2(400, 540)
-collision_layer = 1
 collision_mask = 0
 
-[node name="Visual" type="Polygon2D" parent="Mundo/Platform1"]
+[node name="Visual" type="Polygon2D" parent="Mundo/Platform1" unique_id=1461785224]
 color = Color(0.45, 0.32, 0.22, 1)
 polygon = PackedVector2Array(-100, -15, 100, -15, 100, 15, -100, 15)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Platform1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Platform1" unique_id=1302228723]
 shape = SubResource("Rect_platform")
 
-[node name="Platform2" type="StaticBody2D" parent="Mundo"]
+[node name="Platform2" type="StaticBody2D" parent="Mundo" unique_id=1560484236]
 position = Vector2(880, 420)
-collision_layer = 1
 collision_mask = 0
 
-[node name="Visual" type="Polygon2D" parent="Mundo/Platform2"]
+[node name="Visual" type="Polygon2D" parent="Mundo/Platform2" unique_id=511310136]
 color = Color(0.45, 0.32, 0.22, 1)
 polygon = PackedVector2Array(-100, -15, 100, -15, 100, 15, -100, 15)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Platform2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Platform2" unique_id=913993158]
 shape = SubResource("Rect_platform")
 
-[node name="Platform3" type="StaticBody2D" parent="Mundo"]
+[node name="Platform3" type="StaticBody2D" parent="Mundo" unique_id=78634432]
 position = Vector2(620, 280)
-collision_layer = 1
 collision_mask = 0
 
-[node name="Visual" type="Polygon2D" parent="Mundo/Platform3"]
+[node name="Visual" type="Polygon2D" parent="Mundo/Platform3" unique_id=1402872156]
 color = Color(0.45, 0.32, 0.22, 1)
 polygon = PackedVector2Array(-100, -15, 100, -15, 100, 15, -100, 15)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Platform3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Platform3" unique_id=780902388]
 shape = SubResource("Rect_platform")
 
-[node name="Monedas" type="Node2D" parent="."]
+[node name="Monedas" type="Node2D" parent="." unique_id=1615026246]
 
-[node name="Moneda1" parent="Monedas" instance=ExtResource("4_moneda")]
+[node name="Moneda1" parent="Monedas" unique_id=344046199 instance=ExtResource("4_moneda")]
 position = Vector2(320, 640)
 
-[node name="Moneda2" parent="Monedas" instance=ExtResource("4_moneda")]
+[node name="Moneda2" parent="Monedas" unique_id=969275544 instance=ExtResource("4_moneda")]
 position = Vector2(400, 500)
 
-[node name="Moneda3" parent="Monedas" instance=ExtResource("4_moneda")]
+[node name="Moneda3" parent="Monedas" unique_id=460895459 instance=ExtResource("4_moneda")]
 position = Vector2(880, 380)
 
-[node name="Moneda4" parent="Monedas" instance=ExtResource("4_moneda")]
+[node name="Moneda4" parent="Monedas" unique_id=1938216436 instance=ExtResource("4_moneda")]
 position = Vector2(620, 240)
 
-[node name="Moneda5" parent="Monedas" instance=ExtResource("4_moneda")]
+[node name="Moneda5" parent="Monedas" unique_id=976613577 instance=ExtResource("4_moneda")]
 position = Vector2(1130, 640)
 
-[node name="Puas" type="Node2D" parent="."]
+[node name="Puas" type="Node2D" parent="." unique_id=436664670]
 
-[node name="Pua1" parent="Puas" instance=ExtResource("5_pua")]
+[node name="Pua1" parent="Puas" unique_id=836092610 instance=ExtResource("5_pua")]
 position = Vector2(600, 655)
 
-[node name="Pua2" parent="Puas" instance=ExtResource("5_pua")]
+[node name="Pua2" parent="Puas" unique_id=952749543 instance=ExtResource("5_pua")]
 position = Vector2(1000, 655)
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1119489766]
 position = Vector2(160, 600)
 collision_layer = 2
-collision_mask = 1
 script = ExtResource("1_pp")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1431896464]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_player")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=521130958]
 shape = SubResource("Rect_player")
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=622132929]
 
-[node name="MonedasLabel" type="Label" parent="HUD"]
+[node name="MonedasLabel" type="Label" parent="HUD" unique_id=997239639]
 offset_left = 40.0
 offset_top = 16.0
 offset_right = 1240.0

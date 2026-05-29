@@ -1,8 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://ds3fantasma001"]
+[gd_scene format=3 uid="uid://barbd2ry30vjc"]
 
 [ext_resource type="Script" uid="uid://cs3ppickups01" path="res://scripts/player_pickups.gd" id="1_pp"]
-[ext_resource type="Script" uid="uid://cs3fantasma001" path="res://scripts/fantasma.gd" id="2_fan"]
+[ext_resource type="Script" uid="uid://b2f4ok186trc7" path="res://scripts/fantasma.gd" id="2_fan"]
 [ext_resource type="Texture2D" uid="uid://cr1sfoac4lxg5" path="res://assets/textures/player_idle.png" id="3_player"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_titulo"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_hint"]
 
 [sub_resource type="RectangleShape2D" id="Rect_floor"]
 size = Vector2(1280, 40)
@@ -16,20 +21,17 @@ size = Vector2(30, 320)
 [sub_resource type="RectangleShape2D" id="Rect_player"]
 size = Vector2(50, 80)
 
-[sub_resource type="LabelSettings" id="LabelSettings_titulo"]
-font_size = 20
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_um7rf"]
+size = Vector2(54, 28)
 
-[sub_resource type="LabelSettings" id="LabelSettings_hint"]
-font_size = 16
+[node name="LayersFantasma" type="Node2D" unique_id=2098080951]
 
-[node name="LayersFantasma" type="Node2D"]
-
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=2019780758]
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.15, 0.18, 0.28, 1)
 
-[node name="Titulo" type="Label" parent="."]
+[node name="Titulo" type="Label" parent="." unique_id=109990426]
 offset_left = 40.0
 offset_top = 12.0
 offset_right = 1240.0
@@ -38,7 +40,8 @@ text = "04 · Capas y mascaras — el fantasma atraviesa pilares si destildas el
 label_settings = SubResource("LabelSettings_titulo")
 horizontal_alignment = 1
 
-[node name="Hint" type="Label" parent="."]
+[node name="Hint" type="Label" parent="." unique_id=2097562468]
+modulate = Color(0.85, 0.85, 0.95, 1)
 offset_left = 40.0
 offset_top = 40.0
 offset_right = 1240.0
@@ -46,107 +49,114 @@ offset_bottom = 62.0
 text = "Inspector → Fantasma → CollisionObject2D → Mask → destildar el bit 3 (muro). F6 para correr."
 label_settings = SubResource("LabelSettings_hint")
 horizontal_alignment = 1
-modulate = Color(0.85, 0.85, 0.95, 1)
 
-[node name="Mundo" type="Node2D" parent="."]
+[node name="Mundo" type="Node2D" parent="." unique_id=670584799]
 
-[node name="Floor" type="StaticBody2D" parent="Mundo"]
+[node name="Floor" type="StaticBody2D" parent="Mundo" unique_id=1256606692]
 position = Vector2(640, 700)
-collision_layer = 1
 collision_mask = 0
 
-[node name="Visual" type="Polygon2D" parent="Mundo/Floor"]
+[node name="Visual" type="Polygon2D" parent="Mundo/Floor" unique_id=925243767]
 color = Color(0.3, 0.25, 0.22, 1)
 polygon = PackedVector2Array(-640, -20, 640, -20, 640, 20, -640, 20)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Floor"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/Floor" unique_id=482540397]
 shape = SubResource("Rect_floor")
 
-[node name="WallLeft" type="StaticBody2D" parent="Mundo"]
+[node name="WallLeft" type="StaticBody2D" parent="Mundo" unique_id=672690255]
 position = Vector2(10, 360)
-collision_layer = 1
 collision_mask = 0
 
-[node name="Visual" type="Polygon2D" parent="Mundo/WallLeft"]
+[node name="Visual" type="Polygon2D" parent="Mundo/WallLeft" unique_id=2137221779]
 color = Color(0.25, 0.22, 0.2, 1)
 polygon = PackedVector2Array(-10, -360, 10, -360, 10, 360, -10, 360)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/WallLeft"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/WallLeft" unique_id=125077568]
 shape = SubResource("Rect_wall")
 
-[node name="WallRight" type="StaticBody2D" parent="Mundo"]
+[node name="WallRight" type="StaticBody2D" parent="Mundo" unique_id=1798662277]
 position = Vector2(1270, 360)
-collision_layer = 1
 collision_mask = 0
 
-[node name="Visual" type="Polygon2D" parent="Mundo/WallRight"]
+[node name="Visual" type="Polygon2D" parent="Mundo/WallRight" unique_id=202894792]
 color = Color(0.25, 0.22, 0.2, 1)
 polygon = PackedVector2Array(-10, -360, 10, -360, 10, 360, -10, 360)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/WallRight"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mundo/WallRight" unique_id=2072134119]
 shape = SubResource("Rect_wall")
 
-[node name="Pilares" type="Node2D" parent="."]
+[node name="Pilares" type="Node2D" parent="." unique_id=973555231]
 
-[node name="Pilar1" type="StaticBody2D" parent="Pilares"]
+[node name="Pilar1" type="StaticBody2D" parent="Pilares" unique_id=1946907186]
 position = Vector2(420, 520)
 collision_layer = 4
 collision_mask = 0
 
-[node name="Visual" type="Polygon2D" parent="Pilares/Pilar1"]
+[node name="Visual" type="Polygon2D" parent="Pilares/Pilar1" unique_id=54879423]
 color = Color(0.7, 0.55, 0.35, 1)
 polygon = PackedVector2Array(-15, -160, 15, -160, 15, 160, -15, 160)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pilares/Pilar1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pilares/Pilar1" unique_id=1737459225]
 shape = SubResource("Rect_pillar")
 
-[node name="Pilar2" type="StaticBody2D" parent="Pilares"]
+[node name="Pilar2" type="StaticBody2D" parent="Pilares" unique_id=1985362829]
 position = Vector2(720, 520)
 collision_layer = 4
 collision_mask = 0
 
-[node name="Visual" type="Polygon2D" parent="Pilares/Pilar2"]
+[node name="Visual" type="Polygon2D" parent="Pilares/Pilar2" unique_id=2090742199]
 color = Color(0.7, 0.55, 0.35, 1)
 polygon = PackedVector2Array(-15, -160, 15, -160, 15, 160, -15, 160)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pilares/Pilar2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pilares/Pilar2" unique_id=2147002441]
 shape = SubResource("Rect_pillar")
 
-[node name="Pilar3" type="StaticBody2D" parent="Pilares"]
+[node name="Pilar3" type="StaticBody2D" parent="Pilares" unique_id=1929393652]
 position = Vector2(1020, 520)
 collision_layer = 4
 collision_mask = 0
 
-[node name="Visual" type="Polygon2D" parent="Pilares/Pilar3"]
+[node name="Visual" type="Polygon2D" parent="Pilares/Pilar3" unique_id=746635897]
 color = Color(0.7, 0.55, 0.35, 1)
 polygon = PackedVector2Array(-15, -160, 15, -160, 15, 160, -15, 160)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pilares/Pilar3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pilares/Pilar3" unique_id=1287977801]
 shape = SubResource("Rect_pillar")
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=873810702]
 position = Vector2(160, 600)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_pp")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1010243814]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_player")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=725594292]
 shape = SubResource("Rect_player")
 
-[node name="Fantasma" type="CharacterBody2D" parent="."]
+[node name="Fantasma" type="CharacterBody2D" parent="." unique_id=481124703]
 modulate = Color(0.7, 0.85, 1, 0.65)
 position = Vector2(1150, 600)
 collision_layer = 2
-collision_mask = 5
+collision_mask = 3
 script = ExtResource("2_fan")
 
-[node name="Sprite2D" type="Sprite2D" parent="Fantasma"]
+[node name="Sprite2D" type="Sprite2D" parent="Fantasma" unique_id=1505300883]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_player")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fantasma"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fantasma" unique_id=130931039]
 shape = SubResource("Rect_player")
+
+[node name="Area2D" type="Area2D" parent="Fantasma" unique_id=219089860]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fantasma/Area2D" unique_id=769090196]
+position = Vector2(0, 17)
+shape = SubResource("RectangleShape2D_um7rf")
+debug_color = Color(0.58439386, 0.5505764, 0, 0.41960785)
+
+[connection signal="body_entered" from="Fantasma/Area2D" to="Fantasma" method="_on_area_2d_body_entered"]

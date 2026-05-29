@@ -20,4 +20,5 @@ func _on_body_entered(body: Node) -> void:
 	# TODO: el body que entra es el jugador (CharacterBody2D).
 	#   pista 1: el jugador tiene metodo body.sumar_moneda() para incrementar el contador
 	#   pista 2: queue_free() elimina este nodo (la moneda)
-	pass
+	body.sumar_moneda()
+	queue_free()

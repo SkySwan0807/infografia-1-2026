@@ -123,7 +123,6 @@ debug_color = Color(0.74821746, 0.20529893, 0.99999994, 0.41960785)
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1442429774]
 position = Vector2(445, 75)
-gravity_scale = -0.053
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=1346290130]
 texture = ExtResource("3_7k27o")
