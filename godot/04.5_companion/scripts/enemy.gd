@@ -1,12 +1,17 @@
 extends CharacterBody2D
 
-# === SOLUCIÓN DE REFERENCIA (🎓) — Ejercicio: máquina de estado del enemigo
-# Cinco estados: PATROL → CHASE → ATTACK → HURT → DIE.
+# === ENEMIGO (reutilizado, COMPLETO) ======================================
+# Maquina de estado del murcielago, tal cual la sesion 4:
+#   PATROL -> CHASE -> ATTACK -> HURT -> DIE
+# Igual que el player hay DOS maquinas:
+#   1) esta (enum State) decide la LOGICA / comportamiento.
+#   2) el AnimationTree decide como se VE (fly / attack / hurt / die).
+# _set_state() es el unico lugar donde las dos maquinas se sincronizan.
 #
-# Igual que el player, hay DOS máquinas:
-#   1) Esta (enum State) decide la LÓGICA / comportamiento.
-#   2) El AnimationTree decide cómo se VE (fly / attack / hurt / die).
-# _set_state() es el único lugar donde las dos máquinas se sincronizan.
+# OJO (novedad de 4.5): persigue a CUALQUIER aliado que entre en su
+# DetectionArea -> tanto el player como el compañero (pet). Ambos tienen su
+# HurtBox en la capa "player", asi que el enemigo no distingue: ataca al que
+# detecte. Eso es lo que vuelve la pelea mas interesante.
 # ==========================================================================
 
 enum State { PATROL, CHASE, ATTACK, HURT, DIE }
@@ -16,11 +21,9 @@ const PATROL_SPEED := 25.0
 const CHASE_SPEED := 70.0
 const ACCEL := 300.0
 const ATTACK_RANGE := 22.0
-const PATROL_FLIP_TIME := 2.0  # segundos antes de dar la vuelta
 
 var target: Node2D = null
 var patrol_dir := Vector2.RIGHT
-var patrol_timer := PATROL_FLIP_TIME
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -48,8 +51,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-# Único punto de sincronización entre las dos máquinas: cambia el estado de
-# CÓDIGO y, según cuál sea, viaja al estado VISUAL del AnimationTree.
+# Unico punto de sincronizacion entre las dos maquinas.
 func _set_state(new_state: State) -> void:
 	state = new_state
 	match new_state:
@@ -64,11 +66,6 @@ func _set_state(new_state: State) -> void:
 
 
 func _patrol(delta: float) -> void:
-	# Va y viene: cada PATROL_FLIP_TIME segundos invierte la dirección.
-	patrol_timer -= delta
-	if patrol_timer <= 0.0:
-		patrol_dir = -patrol_dir
-		patrol_timer = PATROL_FLIP_TIME
 	velocity = velocity.move_toward(patrol_dir * PATROL_SPEED, ACCEL * delta)
 	if velocity.x != 0.0:
 		sprite.flip_h = velocity.x < 0.0
@@ -86,7 +83,7 @@ func _chase(delta: float) -> void:
 		velocity = velocity.move_toward(dir * CHASE_SPEED, ACCEL * delta)
 
 
-# --- señales del DetectionArea (capa "enemy" detecta "player") ---
+# --- señales del DetectionArea (capa "enemy" detecta "player"/"pet") ---
 func _on_detection_area_area_entered(area: Area2D) -> void:
 	target = area.owner
 	if state == State.PATROL:
@@ -99,14 +96,13 @@ func _on_detection_area_area_exited(_area: Area2D) -> void:
 		_set_state(State.PATROL)
 
 
-# --- golpe recibido (HurtBox detecta el HitBox del player) ---
+# --- golpe recibido (HurtBox detecta un HitBox aliado) ---
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area is HitBox and state != State.DIE:
 		health.take_damage(area)
 
 
 func _on_health_changed(_old_value: int, new_value: int) -> void:
-	# Si quedó vida, reacciona con el estado HURT (interrumpe lo que hacía).
 	if new_value > 0 and state != State.DIE:
 		_set_state(State.HURT)
 
@@ -115,7 +111,7 @@ func _on_health_depleted() -> void:
 	_set_state(State.DIE)
 
 
-# --- pistas de método llamadas al final de cada animación ---
+# --- pistas de metodo llamadas al final de cada animacion ---
 func attack_anim_finished() -> void:
 	if state == State.ATTACK:
 		_set_state(State.CHASE if is_instance_valid(target) else State.PATROL)
@@ -128,6 +124,3 @@ func hurt_anim_finished() -> void:
 
 func die_anim_finished() -> void:
 	queue_free()
-
-func dramatic_death() -> void:
-	print("adios mundo cruel...")

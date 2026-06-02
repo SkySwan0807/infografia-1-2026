@@ -1,0 +1,162 @@
+[gd_scene load_steps=11 format=3 uid="uid://b45comain00001"]
+
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_gm"]
+[ext_resource type="PackedScene" uid="uid://cckfj5hq788cj" path="res://scenes/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://b45copet000001" path="res://scenes/pet.tscn" id="3_pet"]
+[ext_resource type="PackedScene" uid="uid://b45coenemy0001" path="res://scenes/enemy.tscn" id="4_enemy"]
+[ext_resource type="PackedScene" uid="uid://b4dnm188v1ehm" path="res://scenes/coin.tscn" id="5_coin"]
+[ext_resource type="Script" path="res://scripts/health_bar.gd" id="6_bar"]
+
+[sub_resource type="RectangleShape2D" id="Rect_h"]
+size = Vector2(340, 8)
+
+[sub_resource type="RectangleShape2D" id="Rect_v"]
+size = Vector2(8, 200)
+
+[sub_resource type="LabelSettings" id="Label_small"]
+font_size = 8
+
+[sub_resource type="LabelSettings" id="Label_msg"]
+font_size = 16
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("player", "pet", "coins_container", "score_label", "timer_label", "message_label", "game_timer")]
+script = ExtResource("1_gm")
+player = NodePath("Player")
+pet = NodePath("Pet")
+coins_container = NodePath("Coins")
+score_label = NodePath("CanvasLayer/ScoreLabel")
+timer_label = NodePath("CanvasLayer/TimerLabel")
+message_label = NodePath("CanvasLayer/MessageLabel")
+game_timer = NodePath("Timer")
+
+[node name="Fondo" type="ColorRect" parent="."]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.12, 0.13, 0.18, 1)
+
+[node name="Walls" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Top" type="CollisionShape2D" parent="Walls"]
+position = Vector2(160, -2)
+shape = SubResource("Rect_h")
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls"]
+position = Vector2(160, 182)
+shape = SubResource("Rect_h")
+
+[node name="Left" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-2, 90)
+shape = SubResource("Rect_v")
+
+[node name="Right" type="CollisionShape2D" parent="Walls"]
+position = Vector2(322, 90)
+shape = SubResource("Rect_v")
+
+[node name="Player" parent="." instance=ExtResource("2_player") groups=["player"]]
+position = Vector2(110, 110)
+
+[node name="Pet" parent="." instance=ExtResource("3_pet")]
+position = Vector2(80, 122)
+player_path = NodePath("../Player")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("4_enemy")]
+position = Vector2(248, 52)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("4_enemy")]
+position = Vector2(258, 138)
+
+[node name="Coins" type="Node2D" parent="."]
+
+[node name="Coin" parent="Coins" instance=ExtResource("5_coin")]
+position = Vector2(40, 40)
+scale = Vector2(0.4, 0.4)
+
+[node name="Coin2" parent="Coins" instance=ExtResource("5_coin")]
+position = Vector2(280, 40)
+scale = Vector2(0.4, 0.4)
+
+[node name="Coin3" parent="Coins" instance=ExtResource("5_coin")]
+position = Vector2(160, 95)
+scale = Vector2(0.4, 0.4)
+
+[node name="Coin4" parent="Coins" instance=ExtResource("5_coin")]
+position = Vector2(40, 150)
+scale = Vector2(0.4, 0.4)
+
+[node name="Coin5" parent="Coins" instance=ExtResource("5_coin")]
+position = Vector2(280, 150)
+scale = Vector2(0.4, 0.4)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+offset_left = 4.0
+offset_top = 1.0
+offset_right = 120.0
+offset_bottom = 12.0
+text = "Monedas: 0/5"
+label_settings = SubResource("Label_small")
+
+[node name="VidaLabel" type="Label" parent="CanvasLayer"]
+offset_left = 4.0
+offset_top = 13.0
+offset_right = 80.0
+offset_bottom = 22.0
+text = "Tu personaje"
+label_settings = SubResource("Label_small")
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("health_node")]
+offset_left = 4.0
+offset_top = 22.0
+offset_right = 78.0
+offset_bottom = 29.0
+max_value = 100.0
+value = 100.0
+show_percentage = false
+script = ExtResource("6_bar")
+health_node = NodePath("../../Player/Health")
+
+[node name="ConejoLabel" type="Label" parent="CanvasLayer"]
+offset_left = 4.0
+offset_top = 31.0
+offset_right = 80.0
+offset_bottom = 40.0
+text = "Conejo"
+label_settings = SubResource("Label_small")
+
+[node name="PetHealthBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("health_node")]
+offset_left = 4.0
+offset_top = 40.0
+offset_right = 78.0
+offset_bottom = 47.0
+max_value = 60.0
+value = 60.0
+show_percentage = false
+script = ExtResource("6_bar")
+health_node = NodePath("../../Pet/Health")
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer"]
+offset_left = 248.0
+offset_top = 1.0
+offset_right = 316.0
+offset_bottom = 12.0
+text = "Tiempo: 30"
+label_settings = SubResource("Label_small")
+horizontal_alignment = 2
+
+[node name="MessageLabel" type="Label" parent="CanvasLayer"]
+offset_left = 90.0
+offset_top = 78.0
+offset_right = 230.0
+offset_bottom = 102.0
+text = "-"
+label_settings = SubResource("Label_msg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

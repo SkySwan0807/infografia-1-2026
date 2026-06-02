@@ -1,10 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://c3wshytpftn5q"]
+[gd_scene format=3 uid="uid://c3wshytpftn5q"]
 
-[ext_resource type="Script" path="res://scripts/bat_simple.gd" id="1_fubbc"]
-[ext_resource type="Script" path="res://scripts/health.gd" id="9_health"]
+[ext_resource type="Script" uid="uid://dgf2ti0bud0xa" path="res://scripts/bat_simple.gd" id="1_fubbc"]
 [ext_resource type="Texture2D" uid="uid://kk71xb6np3po" path="res://assets/textures/Enemies/Bat.png" id="1_fyimb"]
 [ext_resource type="PackedScene" uid="uid://148x0po66lyy" path="res://scenes/hit_box.tscn" id="2_5ycv6"]
 [ext_resource type="PackedScene" uid="uid://bqukdayhq6fby" path="res://scenes/hurt_box.tscn" id="4_dbiwf"]
+[ext_resource type="Script" uid="uid://i7o4xeouuptb" path="res://scripts/health.gd" id="9_health"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yfdf8"]
 atlas = ExtResource("1_fyimb")
@@ -62,28 +62,28 @@ radius = 4.12311
 [sub_resource type="CircleShape2D" id="CircleShape2D_3v1gk"]
 radius = 49.6488
 
-[node name="Bat" type="CharacterBody2D"]
+[node name="Bat" type="CharacterBody2D" unique_id=1070023948]
 script = ExtResource("1_fubbc")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1618926179]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_e326q")
 autoplay = "default"
 frame_progress = 0.279958
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1188261777]
 position = Vector2(0, -2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_x7gsk")
 
-[node name="HitBox" parent="." instance=ExtResource("2_5ycv6")]
+[node name="HitBox" parent="." unique_id=1227782477 instance=ExtResource("2_5ycv6")]
 collision_layer = 32
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 position = Vector2(0, -14)
 shape = SubResource("CircleShape2D_nisir")
 
-[node name="HurtBox" parent="." instance=ExtResource("4_dbiwf")]
+[node name="HurtBox" parent="." unique_id=1288911560 instance=ExtResource("4_dbiwf")]
 collision_layer = 64
 collision_mask = 8
 
@@ -91,16 +91,16 @@ collision_mask = 8
 position = Vector2(0, -14)
 shape = SubResource("CircleShape2D_ktgyp")
 
-[node name="DetectionArea" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="." unique_id=967565574]
 collision_layer = 4
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=2088536128]
 position = Vector2(0, -14)
 shape = SubResource("CircleShape2D_3v1gk")
 debug_color = Color(0.309804, 0.498039, 0.992157, 0.145098)
 
-[node name="Health" type="Node" parent="."]
+[node name="Health" type="Node" parent="." unique_id=452927714]
 script = ExtResource("9_health")
 max_health = 40
 

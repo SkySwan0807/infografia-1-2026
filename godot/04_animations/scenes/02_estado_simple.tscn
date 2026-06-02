@@ -1,7 +1,75 @@
-[gd_scene load_steps=18 format=3 uid="uid://c04anim02estado"]
+[gd_scene format=3 uid="uid://co3iygqkuy66s"]
 
-[ext_resource type="Script" path="res://scripts/estado_simple.gd" id="1_est"]
+[ext_resource type="Script" uid="uid://c7410ah626i3u" path="res://scripts/estado_simple.gd" id="1_est"]
 [ext_resource type="Texture2D" uid="uid://bajjj2xy4cghw" path="res://assets/textures/Player/Player.png" id="2_tex"]
+
+[sub_resource type="CapsuleShape2D" id="Capsule_body"]
+radius = 4.0
+height = 12.0
+
+[sub_resource type="Animation" id="Animation_reset"]
+resource_name = "RESET"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [18]
+}
+
+[sub_resource type="Animation" id="Animation_attack"]
+resource_name = "attack"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [36, 37, 38, 39]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_anim_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ca2nj"]
+resource_name = "greet"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [18, 56]
+}
 
 [sub_resource type="Animation" id="Animation_idle"]
 resource_name = "idle"
@@ -39,69 +107,26 @@ tracks/0/keys = {
 "values": [19, 20, 21, 22, 23]
 }
 
-[sub_resource type="Animation" id="Animation_attack"]
-resource_name = "attack"
-length = 0.4
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [36, 37, 38, 39]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.4),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"attack_anim_finished"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_reset"]
-resource_name = "RESET"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [18]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_est"]
 _data = {
 &"RESET": SubResource("Animation_reset"),
 &"attack": SubResource("Animation_attack"),
+&"greet": SubResource("Animation_ca2nj"),
 &"idle": SubResource("Animation_idle"),
 &"run": SubResource("Animation_run")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="ANA_attack"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ca2nj"]
+animation = &"greet"
 
 [sub_resource type="AnimationNodeAnimation" id="ANA_idle"]
 animation = &"idle"
 
 [sub_resource type="AnimationNodeAnimation" id="ANA_run"]
 animation = &"run"
-
-[sub_resource type="AnimationNodeAnimation" id="ANA_attack"]
-animation = &"attack"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="T_start"]
 advance_mode = 2
@@ -116,53 +141,54 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="T_attack_idle"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nybux"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j6eya"]
+
 [sub_resource type="AnimationNodeStateMachine" id="StateMachine_est"]
+states/Start/position = Vector2(11.5, 72.5)
 states/attack/node = SubResource("ANA_attack")
-states/attack/position = Vector2(440, 100)
+states/attack/position = Vector2(381, 60.5)
+states/greet/node = SubResource("AnimationNodeAnimation_ca2nj")
+states/greet/position = Vector2(74.722046, 281.5)
 states/idle/node = SubResource("ANA_idle")
 states/idle/position = Vector2(240, 180)
 states/run/node = SubResource("ANA_run")
-states/run/position = Vector2(440, 220)
-transitions = ["Start", "idle", SubResource("T_start"), "idle", "run", SubResource("T_idle_run"), "run", "idle", SubResource("T_run_idle"), "idle", "attack", SubResource("T_idle_attack"), "run", "attack", SubResource("T_run_attack"), "attack", "idle", SubResource("T_attack_idle")]
-graph_offset = Vector2(0, 20)
+states/run/position = Vector2(451.5, 230)
+transitions = ["Start", "idle", SubResource("T_start"), "idle", "run", SubResource("T_idle_run"), "run", "idle", SubResource("T_run_idle"), "idle", "attack", SubResource("T_idle_attack"), "run", "attack", SubResource("T_run_attack"), "attack", "idle", SubResource("T_attack_idle"), "idle", "greet", SubResource("AnimationNodeStateMachineTransition_nybux"), "greet", "idle", SubResource("AnimationNodeStateMachineTransition_j6eya")]
+graph_offset = Vector2(-298.27792, -8)
 
-[sub_resource type="CapsuleShape2D" id="Capsule_body"]
-radius = 4.0
-height = 12.0
+[node name="EstadoSimple" type="Node2D" unique_id=1793722914]
 
-[node name="EstadoSimple" type="Node2D"]
-
-[node name="Fondo" type="ColorRect" parent="."]
+[node name="Fondo" type="ColorRect" parent="." unique_id=33943432]
 offset_right = 320.0
 offset_bottom = 180.0
 color = Color(0.12, 0.13, 0.18, 1)
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=709104781]
 offset_left = 6.0
 offset_top = 6.0
 offset_right = 314.0
 offset_bottom = 24.0
 text = "WASD/flechas = run/idle  ·  ESPACIO = attack  (máquina de estado, sin BlendSpace)"
 
-[node name="Personaje" type="CharacterBody2D" parent="."]
+[node name="Personaje" type="CharacterBody2D" parent="." unique_id=1847430342]
 position = Vector2(160, 96)
 script = ExtResource("1_est")
 
-[node name="Sprite2D" type="Sprite2D" parent="Personaje"]
+[node name="Sprite2D" type="Sprite2D" parent="Personaje" unique_id=1917667138]
 position = Vector2(0, -9)
 texture = ExtResource("2_tex")
 hframes = 60
 frame = 18
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Personaje"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Personaje" unique_id=1531729476]
 rotation = -1.5708
 shape = SubResource("Capsule_body")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Personaje"]
-libraries = {
-&"": SubResource("AnimationLibrary_est")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Personaje" unique_id=1232666792]
+libraries/ = SubResource("AnimationLibrary_est")
 
-[node name="AnimationTree" type="AnimationTree" parent="Personaje"]
+[node name="AnimationTree" type="AnimationTree" parent="Personaje" unique_id=1523713751]
 tree_root = SubResource("StateMachine_est")
 anim_player = NodePath("../AnimationPlayer")

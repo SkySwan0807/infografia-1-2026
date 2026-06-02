@@ -13,7 +13,7 @@ extends Node2D
 
 
 func _ready() -> void:
-	animation_player.play("caminar")
+	animation_player.play("correr")
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -23,6 +23,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	# Al terminar el rebote, volvemos a caminar.
+	# Al terminar el rebote, volvemos a correr.
 	if anim_name == "rebote":
-		animation_player.play("caminar")
+		animation_player.play("correr")
