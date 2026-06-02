@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5tmsc030000"]
+
+[ext_resource type="TileSet" uid="uid://d5tmsuelo000" path="res://tilesets/suelo.tres" id="1_ts"]
+[ext_resource type="Script" uid="uid://b5tmmapacod0" path="res://scripts/mapa_por_codigo.gd" id="2_mapa"]
+
+[node name="MapaPorCodigo" type="Node2D"]
+
+[node name="Mapa" type="TileMapLayer" parent="."]
+tile_set = ExtResource("1_ts")
+script = ExtResource("2_mapa")
