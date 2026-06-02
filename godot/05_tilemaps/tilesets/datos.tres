@@ -1,0 +1,28 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://d5tmdatos000"]
+
+[ext_resource type="Texture2D" uid="uid://beqj12scbeer0" path="res://assets/textures/tiles/Grass.png" id="1_grass"]
+[ext_resource type="Texture2D" uid="uid://bqe4aj24gmrra" path="res://assets/textures/tiles/Water.png" id="2_water"]
+
+[sub_resource type="TileSetAtlasSource" id="atlas_grass"]
+texture = ExtResource("1_grass")
+texture_region_size = Vector2i(16, 16)
+1:5/0 = 0
+1:5/0/custom_data_0 = "suelo"
+2:5/0 = 0
+2:5/0/custom_data_0 = "suelo"
+
+[sub_resource type="TileSetAtlasSource" id="atlas_water"]
+texture = ExtResource("2_water")
+texture_region_size = Vector2i(16, 16)
+0:0/0 = 0
+0:0/0/custom_data_0 = "agua"
+1:0/0 = 0
+1:0/0/custom_data_0 = "agua"
+
+[resource]
+resource_name = "datos"
+custom_data_layer_0/name = "tipo"
+custom_data_layer_0/type = 4
+tile_size = Vector2i(16, 16)
+sources/0 = SubResource("atlas_grass")
+sources/1 = SubResource("atlas_water")

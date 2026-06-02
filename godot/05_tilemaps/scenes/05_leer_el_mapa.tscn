@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5tmsc050000"]
+
+[ext_resource type="TileSet" uid="uid://d5tmdatos000" path="res://tilesets/datos.tres" id="1_ts"]
+[ext_resource type="Script" uid="uid://b5tmagua0000" path="res://scripts/mapa_con_agua.gd" id="2_mapa"]
+[ext_resource type="Script" uid="uid://b5tmleermap0" path="res://scripts/exercises/leer_mapa.gd" id="3_leer"]
+[ext_resource type="Texture2D" uid="uid://bajjj2xy4cghw" path="res://assets/textures/Player/Player.png" id="4_tex"]
+
+[sub_resource type="RectangleShape2D" id="rect_player"]
+size = Vector2(10, 12)
+
+[node name="LeerElMapa" type="Node2D"]
+
+[node name="Mapa" type="TileMapLayer" parent="."]
+tile_set = ExtResource("1_ts")
+script = ExtResource("2_mapa")
+
+[node name="Jugador" type="CharacterBody2D" parent="."]
+position = Vector2(48, 40)
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("3_leer")
+mapa = NodePath("../Mapa")
+
+[node name="Sprite2D" type="Sprite2D" parent="Jugador"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_tex")
+hframes = 60
+frame = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador"]
+shape = SubResource("rect_player")

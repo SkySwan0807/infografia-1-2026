@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://cbsrah4yyr0vs"]
+[gd_scene format=3 uid="uid://cbsrah4yyr0vs"]
 
+[ext_resource type="Script" uid="uid://cmrupy1o2g1xo" path="res://scripts/pet.gd" id="1_pet"]
 [ext_resource type="Script" uid="uid://cmrupy1o2g1xo" path="res://scripts/pet.gd" id="1_pet"]
 [ext_resource type="Texture2D" uid="uid://c6a6732hf427h" path="res://assets/characters/CharacterSprites.png" id="2_spr"]
 [ext_resource type="PackedScene" uid="uid://148x0po66lyy" path="res://scenes/hit_box.tscn" id="3_hit"]
 [ext_resource type="PackedScene" uid="uid://bqukdayhq6fby" path="res://scenes/hurt_box.tscn" id="4_hurt"]
+[ext_resource type="Script" uid="uid://i7o4xeouuptb" path="res://scripts/health.gd" id="5_health"]
 [ext_resource type="Script" uid="uid://i7o4xeouuptb" path="res://scripts/health.gd" id="5_health"]
 
 [sub_resource type="CircleShape2D" id="Circle_body"]
@@ -16,7 +19,7 @@ radius = 9.0
 radius = 7.0
 
 [sub_resource type="CircleShape2D" id="Circle_det"]
-radius = 55.0
+radius = 140.00357
 
 [node name="Pet" type="CharacterBody2D" unique_id=1333592059]
 collision_layer = 2

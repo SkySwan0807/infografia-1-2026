@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5tmplayer00"]
+
+[ext_resource type="Script" uid="uid://b5tmjugador0" path="res://scripts/jugador.gd" id="1_jug"]
+[ext_resource type="Texture2D" uid="uid://bajjj2xy4cghw" path="res://assets/textures/Player/Player.png" id="2_tex"]
+
+[sub_resource type="RectangleShape2D" id="rect_player"]
+size = Vector2(10, 12)
+
+[node name="Jugador" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_jug")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_tex")
+hframes = 60
+frame = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("rect_player")
