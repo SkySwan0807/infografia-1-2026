@@ -68,10 +68,9 @@ func _physics_process(delta: float) -> void:
 
 
 func _follow(delta: float) -> void:
-	# TODO (1): si hay enemigo a la vista y estamos dentro del leash, perseguir.
-	#   if is_instance_valid(target) and _within_leash():
-	#       _set_state(State.CHASE)
-	#       return
+	if is_instance_valid(target) and _within_leash():
+		_set_state(State.CHASE)
+		return
 
 	if player and global_position.distance_to(player.global_position) > FOLLOW_DISTANCE:
 		var dir := global_position.direction_to(player.global_position)
@@ -81,21 +80,28 @@ func _follow(delta: float) -> void:
 
 
 func _chase(_delta: float) -> void:
-	# TODO (2): perseguir al enemigo.
-	#   - si `target` ya no es valido o estamos fuera del leash -> _set_state(State.FOLLOW)
-	#   - si la distancia al target <= ATTACK_RANGE -> _set_state(State.ATTACK)
-	#   - si no, mover velocity hacia el target (mira como lo hace _follow con el jugador)
-	# Por ahora, sin implementar, volvemos a seguir al jugador:
-	_set_state(State.FOLLOW)
+	if not is_instance_valid(target) or not _within_leash():
+		_set_state(State.FOLLOW)
+		return
+
+	var distance := global_position.distance_to(target.global_position)
+
+	if distance <= ATTACK_RANGE:
+		_set_state(State.ATTACK)
+		return
+
+	var dir := global_position.direction_to(target.global_position)
+	velocity = velocity.move_toward(dir * max_speed, ACCEL * _delta)
 
 
 func _attack(_delta: float) -> void:
-	# TODO (3): el conejo se queda quieto (velocity = Vector2.ZERO) mientras
-	# corre _timer. Cuando _timer <= 0: apagar la HitBox (hit_shape.disabled = true)
-	# y llamar a _back_to_default().
 	velocity = Vector2.ZERO
-	hit_shape.disabled = true
-	_back_to_default()
+
+	_timer -= _delta
+
+	if _timer <= 0.0:
+		hit_shape.disabled = true
+		_back_to_default()
 
 
 # --- YA HECHO de aca para abajo -------------------------------------------
