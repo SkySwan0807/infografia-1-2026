@@ -64,13 +64,22 @@ func _physics_process(delta: float) -> void:
 #   HURT -> "hurt"            ·   DIE -> "die"
 func _set_state(new_state: State) -> void:
 	state = new_state
-	pass # <-- reemplazá con el match que llama a state_machine.travel(...)
+	match state:
+		State.PATROL, State.CHASE:
+			state_machine.travel("fly")
+		State.ATTACK:
+			state_machine.travel("attack")
+		State.HURT:
+			state_machine.travel("hurt")
+		State.DIE:
+			state_machine.travel("die")
 
 
 # TODO 2: moverse en la dirección de patrullaje (patrol_dir) a PATROL_SPEED.
 # Acordate de voltear el sprite según hacia dónde va (sprite.flip_h).
 func _patrol(_delta: float) -> void:
-	pass
+	velocity = patrol_dir * PATROL_SPEED
+	sprite.flip_h = patrol_dir.x < 0
 
 
 # TODO 3: perseguir al target.
@@ -79,50 +88,81 @@ func _patrol(_delta: float) -> void:
 #  - si está más cerca que ATTACK_RANGE -> pasar a ATTACK
 #  - si no, moverse hacia él a CHASE_SPEED
 func _chase(_delta: float) -> void:
-	pass
+	if not is_instance_valid(target):
+		target = null
+		_set_state(State.PATROL)
+		return
+
+	var direction := (target.global_position - global_position).normalized()
+
+	sprite.flip_h = direction.x < 0
+
+	if global_position.distance_to(target.global_position) <= ATTACK_RANGE:
+		velocity = Vector2.ZERO
+		_set_state(State.ATTACK)
+		return
+
+	velocity = direction * CHASE_SPEED
 
 
 # TODO 4: el DetectionArea detectó algo (es el player).
 # Guardá el target (area.owner) y, si estabas en PATROL, pasá a CHASE.
-func _on_detection_area_area_entered(_area: Area2D) -> void:
-	pass
+func _on_detection_area_area_entered(area: Area2D) -> void:
+	target = area.owner
+
+	if state == State.PATROL:
+		_set_state(State.CHASE)
 
 
 # TODO 5: el player salió del rango de detección.
 # Olvidá el target y, si estabas en CHASE, volvé a PATROL.
 func _on_detection_area_area_exited(_area: Area2D) -> void:
-	pass
+	target = null
+
+	if state == State.CHASE:
+		_set_state(State.PATROL)
 
 
 # TODO 6: te golpeó el HitBox del player.
 # Si es un HitBox y no estás muriendo, restá vida con health.take_damage(area).
-func _on_hurt_box_area_entered(_area: Area2D) -> void:
-	pass
+func _on_hurt_box_area_entered(area: Area2D) -> void:
+	if state == State.DIE:
+		return
+
+	if area is HitBox:
+		health.take_damage(area)
 
 
 # TODO 7: la vida cambió. Si todavía queda vida (>0) y no estás muriendo,
 # reaccioná pasando al estado HURT.
-func _on_health_changed(_old_value: int, _new_value: int) -> void:
-	pass
+func _on_health_changed(_old_value: int, new_value: int) -> void:
+	if new_value > 0 and state != State.DIE:
+		_set_state(State.HURT)
 
 
 # TODO 8: la vida llegó a 0. Pasá al estado DIE.
 func _on_health_depleted() -> void:
-	pass
+	_set_state(State.DIE)
 
 
 # --- pistas de método: las llama la animación al terminar (ya cableadas) ---
 
 # TODO 9: terminó la animación de ataque. Volvé a CHASE (si hay target) o PATROL.
 func attack_anim_finished() -> void:
-	pass
+	if is_instance_valid(target):
+		_set_state(State.CHASE)
+	else:
+		_set_state(State.PATROL)
 
 
 # TODO 10: terminó la animación de daño. Volvé a CHASE (si hay target) o PATROL.
 func hurt_anim_finished() -> void:
-	pass
+	if is_instance_valid(target):
+		_set_state(State.CHASE)
+	else:
+		_set_state(State.PATROL)
 
 
 # TODO 11: terminó la animación de muerte. Borrá el nodo con queue_free().
 func die_anim_finished() -> void:
-	pass
+	queue_free()
