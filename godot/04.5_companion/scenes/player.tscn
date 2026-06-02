@@ -518,11 +518,11 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ostm1"]
 states/Attack/node = SubResource("AnimationNodeBlendSpace2D_0nnk7")
-states/Attack/position = Vector2(460, 245)
+states/Attack/position = Vector2(255.5, 200)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_6on1a")
 states/Idle/position = Vector2(452, 107)
 states/Run/node = SubResource("AnimationNodeBlendSpace2D_y3qls")
-states/Run/position = Vector2(685, 101.25)
+states/Run/position = Vector2(451.5, 232.5)
 transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_e3am6"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_ycvpd"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_isi7j"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_dwfot"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_1wj0p")]
 graph_offset = Vector2(29.6999, 24.03)
 
@@ -551,9 +551,9 @@ libraries/ = SubResource("AnimationLibrary_tjxqp")
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=468128570]
 tree_root = SubResource("AnimationNodeStateMachine_ostm1")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Attack/blend_position = Vector2(0.8187882, 0.2277193)
-parameters/Idle/blend_position = Vector2(-0.43135077, -0.061754346)
-parameters/Run/blend_position = Vector2(-0.29571986, 0.32807028)
+parameters/Attack/blend_position = Vector2(-0.00173914, -0.00235546)
+parameters/Idle/blend_position = Vector2(0.00173914, 0.00706637)
+parameters/Run/blend_position = Vector2(-0.00173914, -0.00235546)
 
 [node name="HitBoxPivot" type="Marker2D" parent="." unique_id=1981527143]
 position = Vector2(13.79, -3.81)
