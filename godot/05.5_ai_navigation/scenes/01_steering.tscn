@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnav01steer01"]
+
+[ext_resource type="PackedScene" uid="uid://cnavplayer001" path="res://scenes/player.tscn" id="1_player"]
+[ext_resource type="Script" path="res://scripts/enemigo_steering.gd" id="2_enem"]
+[ext_resource type="Texture2D" uid="uid://kk71xb6np3po" path="res://assets/textures/Enemies/Bat.png" id="3_bat"]
+
+[sub_resource type="CircleShape2D" id="circle_enem"]
+radius = 5.0
+
+[node name="Steering" type="Node2D"]
+
+[node name="Jugador" parent="." instance=ExtResource("1_player")]
+position = Vector2(160, 110)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 90)
+
+[node name="Enemigo" type="CharacterBody2D" parent="."]
+position = Vector2(40, 40)
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("2_enem")
+player_path = NodePath("../Jugador")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemigo"]
+position = Vector2(0, -4)
+texture = ExtResource("3_bat")
+hframes = 5
+frame = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo"]
+shape = SubResource("circle_enem")

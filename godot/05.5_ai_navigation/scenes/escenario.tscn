@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnavescena001"]
+
+[ext_resource type="Script" path="res://scripts/mapa.gd" id="1_mapa"]
+[ext_resource type="TileSet" uid="uid://cnavts0000001" path="res://tilesets/mundo_nav.tres" id="2_ts"]
+
+[node name="Mundo" type="Node2D"]
+script = ExtResource("1_mapa")
+
+[node name="Suelo" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_ts")
+
+[node name="Paredes" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_ts")

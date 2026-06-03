@@ -29,7 +29,7 @@ func _ready() -> void:
 
 	# Una "isla" más chica al costado, para ver dos zonas separadas.
 	for y in range(4, 7):
-		for x in range(15, 19):
+		for x in range(15, 16):
 			celdas.append(Vector2i(x, y))
 
 	set_cells_terrain_connect(celdas, TERRAIN_SET, TERRAIN_PASTO)
