@@ -1,32 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnav01steer01"]
+[gd_scene format=3 uid="uid://cnav01steer01"]
 
 [ext_resource type="PackedScene" uid="uid://cnavplayer001" path="res://scenes/player.tscn" id="1_player"]
-[ext_resource type="Script" path="res://scripts/enemigo_steering.gd" id="2_enem"]
+[ext_resource type="Script" uid="uid://0hnxc2o734c6" path="res://scripts/enemigo_steering.gd" id="2_enem"]
 [ext_resource type="Texture2D" uid="uid://kk71xb6np3po" path="res://assets/textures/Enemies/Bat.png" id="3_bat"]
 
 [sub_resource type="CircleShape2D" id="circle_enem"]
 radius = 5.0
 
-[node name="Steering" type="Node2D"]
+[node name="Steering" type="Node2D" unique_id=1682726039]
 
-[node name="Jugador" parent="." instance=ExtResource("1_player")]
+[node name="Jugador" parent="." unique_id=1420099725 instance=ExtResource("1_player")]
 position = Vector2(160, 110)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=478867725]
 position = Vector2(160, 90)
 
-[node name="Enemigo" type="CharacterBody2D" parent="."]
+[node name="Enemigo" type="CharacterBody2D" parent="." unique_id=587426337]
 position = Vector2(40, 40)
 collision_layer = 4
-collision_mask = 1
 script = ExtResource("2_enem")
 player_path = NodePath("../Jugador")
 
-[node name="Sprite2D" type="Sprite2D" parent="Enemigo"]
+[node name="Sprite2D" type="Sprite2D" parent="Enemigo" unique_id=412139113]
 position = Vector2(0, -4)
 texture = ExtResource("3_bat")
 hframes = 5
-frame = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo" unique_id=1758845455]
 shape = SubResource("circle_enem")

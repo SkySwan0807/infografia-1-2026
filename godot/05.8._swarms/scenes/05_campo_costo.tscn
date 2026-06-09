@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://csw05costo001"]
+
+[ext_resource type="Script" path="res://scripts/campo.gd" id="1_campo"]
+
+[node name="CampoCosto" type="Node2D"]
+script = ExtResource("1_campo")
+dibujar = "costo"

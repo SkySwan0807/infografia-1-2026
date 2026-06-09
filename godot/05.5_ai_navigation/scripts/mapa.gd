@@ -68,6 +68,7 @@ func celdas_pared() -> Dictionary:
 	# pilares sueltos
 	s[Vector2i(4, 3)] = true
 	s[Vector2i(15, 8)] = true
+	s[Vector2i(4, 8)] = true
 	return s
 
 

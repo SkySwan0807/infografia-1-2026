@@ -55,6 +55,7 @@ func _mundo(celda: Vector2i) -> Vector2:
 
 
 func _recalcular() -> void:
+	print("recalculando trayectoria...")
 	if player == null or astar.region.size == Vector2i.ZERO:
 		return
 	var ini := _cel(global_position)
@@ -84,7 +85,13 @@ func _physics_process(delta: float) -> void:
 	#       _ultima_celda_jugador = celda_jugador
 	#       _recalcular()
 	# ----------------------------------------------------------------------
-	_recalcular()   # <-- placeholder: por ahora recalcula siempre (como la 04)
+	_acum += delta
+	print(_acum)
+	var celda_jugador = _cel(player.global_position)
+	if _acum >= recalcular_cada or celda_jugador != _ultima_celda_jugador:
+		_acum = 0.0
+		_ultima_celda_jugador = celda_jugador
+		_recalcular()
 
 	if _idx < _camino.size():
 		var objetivo := _camino[_idx]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://csw04atrac001"]
+
+[ext_resource type="Script" path="res://scripts/flock.gd" id="1_flock"]
+[ext_resource type="PackedScene" uid="uid://cswboid000001" path="res://scenes/boid.tscn" id="2_boid"]
+
+[node name="Atractor" type="Node2D"]
+script = ExtResource("1_flock")
+boid_escena = ExtResource("2_boid")
+peso_separacion = 1.5
+peso_alineacion = 1.0
+peso_cohesion = 1.0
+atractor_activo = true
+peso_atractor = 1.2

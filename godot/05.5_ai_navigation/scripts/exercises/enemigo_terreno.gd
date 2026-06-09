@@ -57,14 +57,14 @@ func _pesos_por_terreno() -> void:
 			if astar.is_point_solid(celda):
 				continue
 			# TODO 1: pedir los datos del tile de suelo en esta celda.
-			#   pista: var datos := suelo.get_cell_tile_data(celda)   (¡puede ser null!)
+			var datos := suelo.get_cell_tile_data(celda)
 
 			# TODO 2: si hay datos, leer el costo del custom data "costo".
-			#   pista: datos.get_custom_data("costo")  -> un float (1.0 o 5.0)
+			var costo = datos.get_custom_data("costo")
 
 			# TODO 3: aplicar ese costo como peso de la celda.
-			#   pista: astar.set_point_weight_scale(celda, costo)
-			pass
+			astar.set_point_weight_scale(celda, costo)
+			
 
 
 func _cel(pos: Vector2) -> Vector2i:

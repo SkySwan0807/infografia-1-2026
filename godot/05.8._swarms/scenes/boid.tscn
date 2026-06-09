@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cswboid000001"]
+
+[ext_resource type="Script" path="res://scripts/boid.gd" id="1_boid"]
+
+[node name="Boid" type="Node2D"]
+script = ExtResource("1_boid")
+
+[node name="Triangulo" type="Polygon2D" parent="."]
+color = Color(0.54, 0.71, 0.98, 1)
+polygon = PackedVector2Array(7, 0, -5, -4, -5, 4)

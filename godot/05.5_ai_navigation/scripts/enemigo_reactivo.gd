@@ -43,6 +43,7 @@ func _ready() -> void:
 	_punto_a = inicio
 	_punto_b = inicio + patrol_offset
 	_destino_patrulla = _punto_b
+	
 
 
 func _physics_process(delta: float) -> void:
@@ -98,4 +99,4 @@ func _ve_al_jugador() -> bool:
 	vista.target_position = vista.to_local(player.global_position)
 	vista.force_raycast_update()
 	# si el rayo choca algo (una pared) antes de llegar al jugador, no lo ve
-	return not vista.is_colliding()
+	return true#not vista.is_colliding()
