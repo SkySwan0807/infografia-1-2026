@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://ui9scene080001"]
+
+[ext_resource type="Script" path="res://scripts/exercises/game_over.gd" id="1_go"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_go")
+
+[node name="Menu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -160.0
+offset_right = 220.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 18
+
+[node name="Titulo" type="Label" parent="Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Fin del juego"
+horizontal_alignment = 1
+
+[node name="Puntaje" type="Label" parent="Menu"]
+layout_mode = 2
+text = "La vida llegó a cero"
+horizontal_alignment = 1
+
+[node name="Espacio" type="Control" parent="Menu"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Reintentar" type="Button" parent="Menu"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Reintentar"
+
+[node name="MenuPrincipal" type="Button" parent="Menu"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Menú principal"
+
+[connection signal="pressed" from="Menu/Reintentar" to="." method="_on_reintentar_pressed"]
+[connection signal="pressed" from="Menu/MenuPrincipal" to="." method="_on_menu_principal_pressed"]

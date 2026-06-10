@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://ui9scene070001"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_hud"]
+[ext_resource type="Script" path="res://scripts/mover.gd" id="2_mover"]
+[ext_resource type="Script" path="res://scripts/salud.gd" id="3_salud"]
+[ext_resource type="Script" path="res://scripts/barra_vida.gd" id="4_barra"]
+
+[node name="Juego" type="Node2D" node_paths=PackedStringArray("puntos_label", "tiempo_label", "nodo_salud", "reloj")]
+script = ExtResource("1_hud")
+puntos_label = NodePath("HUD/PuntosLabel")
+tiempo_label = NodePath("HUD/TiempoLabel")
+nodo_salud = NodePath("Jugador/Salud")
+reloj = NodePath("Reloj")
+
+[node name="Jugador" type="Node2D" parent="."]
+position = Vector2(360, 360)
+script = ExtResource("2_mover")
+
+[node name="Forma" type="Polygon2D" parent="Jugador"]
+color = Color(0.537, 0.706, 0.984, 1)
+polygon = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
+
+[node name="Salud" type="Node" parent="Jugador"]
+script = ExtResource("3_salud")
+vida_maxima = 100
+
+[node name="Reloj" type="Timer" parent="."]
+wait_time = 1.0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="PuntosLabel" type="Label" parent="HUD"]
+offset_left = 20.0
+offset_top = 14.0
+offset_right = 260.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 24
+text = "Puntos: 0"
+
+[node name="TiempoLabel" type="Label" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -260.0
+offset_top = 14.0
+offset_right = -20.0
+offset_bottom = 44.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 24
+text = "Tiempo: 10"
+horizontal_alignment = 2
+
+[node name="BarraVida" type="ProgressBar" parent="HUD" node_paths=PackedStringArray("nodo_salud")]
+offset_left = 20.0
+offset_top = 52.0
+offset_right = 280.0
+offset_bottom = 78.0
+max_value = 100.0
+value = 100.0
+show_percentage = false
+script = ExtResource("4_barra")
+nodo_salud = NodePath("../../Jugador/Salud")

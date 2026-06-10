@@ -1,18 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://csw07multit01"]
+[gd_scene format=3 uid="uid://csw07multit01"]
 
-[ext_resource type="Script" path="res://scripts/campo.gd" id="1_campo"]
-[ext_resource type="Script" path="res://scripts/crowd.gd" id="2_crowd"]
+[ext_resource type="Script" uid="uid://cmxkgspm6rpf6" path="res://scripts/campo.gd" id="1_campo"]
+[ext_resource type="Script" uid="uid://b4bpugwfu8ms" path="res://scripts/crowd.gd" id="2_crowd"]
 [ext_resource type="PackedScene" uid="uid://cswagentem001" path="res://scenes/agente_multitud.tscn" id="3_agm"]
 
-[node name="Multitud" type="Node2D"]
+[node name="Multitud" type="Node2D" unique_id=2065695300]
 
-[node name="Campo" type="Node2D" parent="."]
+[node name="Campo" type="Node2D" parent="." unique_id=334527715]
 script = ExtResource("1_campo")
 seguir_mouse = true
 dibujar = "nada"
 
-[node name="Agentes" type="Node2D" parent="."]
+[node name="Agentes" type="Node2D" parent="." unique_id=2085695710]
 script = ExtResource("2_crowd")
 agente_escena = ExtResource("3_agm")
-cantidad = 200
 campo_path = NodePath("../Campo")

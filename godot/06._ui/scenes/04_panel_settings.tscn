@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://ui9scene040001"]
+
+; ===========================================================================
+; EJERCICIO (🎓): construye el panel de opciones con contenedores.
+; Ahora el panel solo tiene el título y el botón "Volver".
+; Tu tarea: agrega DENTRO de "Filas" (un VBoxContainer), entre el título y el
+; botón, dos filas de opciones. Cada fila es un HBoxContainer con una etiqueta
+; a la izquierda y un control a la derecha:
+;   1) Label "Volumen"           + HSlider
+;   2) Label "Pantalla completa"  + CheckButton
+; Pista: dale al Label  size_flags_horizontal = 3  (expandir) para empujar el
+; control hacia la derecha. Solución en _solutions/04_panel_settings_solved.tscn
+; ===========================================================================
+
+[sub_resource type="LabelSettings" id="LabelSettings_titulo"]
+font_size = 32
+
+[node name="PanelSettings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -200.0
+offset_right = 220.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Filas" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Titulo" type="Label" parent="Panel/Filas"]
+layout_mode = 2
+text = "Opciones"
+label_settings = SubResource("LabelSettings_titulo")
+horizontal_alignment = 1
+
+[node name="Volver" type="Button" parent="Panel/Filas"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Volver"

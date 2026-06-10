@@ -1,0 +1,150 @@
+[gd_scene load_steps=2 format=3 uid="uid://ui9scene020001"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_titulo"]
+font_size = 32
+
+[node name="Contenedores" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Titulo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -360.0
+offset_top = 20.0
+offset_right = 360.0
+offset_bottom = 60.0
+grow_horizontal = 2
+text = "Los contenedores acomodan a sus hijos"
+label_settings = SubResource("LabelSettings_titulo")
+horizontal_alignment = 1
+
+[node name="Fila" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 90.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="Col1" type="VBoxContainer" parent="Fila"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Header" type="Label" parent="Fila/Col1"]
+layout_mode = 2
+text = "VBoxContainer"
+horizontal_alignment = 1
+
+[node name="Demo" type="VBoxContainer" parent="Fila/Col1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Uno" type="Button" parent="Fila/Col1/Demo"]
+layout_mode = 2
+text = "Uno"
+
+[node name="Dos" type="Button" parent="Fila/Col1/Demo"]
+layout_mode = 2
+text = "Dos"
+
+[node name="Tres" type="Button" parent="Fila/Col1/Demo"]
+layout_mode = 2
+text = "Tres"
+
+[node name="Col2" type="VBoxContainer" parent="Fila"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Header" type="Label" parent="Fila/Col2"]
+layout_mode = 2
+text = "GridContainer (2 col)"
+horizontal_alignment = 1
+
+[node name="Demo" type="GridContainer" parent="Fila/Col2"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+
+[node name="A" type="Button" parent="Fila/Col2/Demo"]
+layout_mode = 2
+text = "A"
+
+[node name="B" type="Button" parent="Fila/Col2/Demo"]
+layout_mode = 2
+text = "B"
+
+[node name="C" type="Button" parent="Fila/Col2/Demo"]
+layout_mode = 2
+text = "C"
+
+[node name="D" type="Button" parent="Fila/Col2/Demo"]
+layout_mode = 2
+text = "D"
+
+[node name="Col3" type="VBoxContainer" parent="Fila"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Header" type="Label" parent="Fila/Col3"]
+layout_mode = 2
+text = "MarginContainer"
+horizontal_alignment = 1
+
+[node name="Demo" type="MarginContainer" parent="Fila/Col3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Panel" type="Panel" parent="Fila/Col3/Demo"]
+layout_mode = 2
+
+[node name="Texto" type="Label" parent="Fila/Col3/Demo/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "margen
+de 24 px"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Col4" type="VBoxContainer" parent="Fila"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Header" type="Label" parent="Fila/Col4"]
+layout_mode = 2
+text = "CenterContainer"
+horizontal_alignment = 1
+
+[node name="Demo" type="CenterContainer" parent="Fila/Col4"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Centrado" type="Button" parent="Fila/Col4/Demo"]
+layout_mode = 2
+text = "centrado"

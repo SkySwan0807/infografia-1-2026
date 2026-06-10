@@ -1,11 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://csw02aline001"]
+[gd_scene format=3 uid="uid://csw02aline001"]
 
-[ext_resource type="Script" path="res://scripts/flock.gd" id="1_flock"]
+[ext_resource type="Script" uid="uid://dlrtpj5i257nq" path="res://scripts/flock.gd" id="1_flock"]
 [ext_resource type="PackedScene" uid="uid://cswboid000001" path="res://scenes/boid.tscn" id="2_boid"]
 
-[node name="Alineacion" type="Node2D"]
+[node name="Alineacion" type="Node2D" unique_id=1240713139]
 script = ExtResource("1_flock")
 boid_escena = ExtResource("2_boid")
-peso_separacion = 1.5
-peso_alineacion = 1.0
-peso_cohesion = 0.0
+cantidad = 120
+peso_separacion = 2.0
+atractor_activo = true
+peso_atractor = -1.2

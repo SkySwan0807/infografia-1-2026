@@ -64,10 +64,29 @@ func _construir_flujo() -> void:
 	flujo = []
 	flujo.resize(COLS * ROWS)
 	flujo.fill(Vector2.ZERO)
-	# TODO: para cada celda libre, mirar sus 8 vecinos (_vecinos8), quedarte con
-	#       el de MENOR costo, y guardar en flujo[_i(c)] la dirección hacia él:
-	#         flujo[_i(c)] = Vector2(mejor - c).normalized()
-	#       (saltear paredes y celdas con costo == INF).
+	
+	for y in ROWS:
+		for x in COLS:
+			var c = Vector2i(x, y)
+			# verificar si estamos en una pared:
+			if paredes.has(c) or costo[_i(c)] == INF:
+				continue
+			
+			var mejor = c
+			var mejor_costo = costo[_i(c)]
+			
+			for v in _vecinos8(c):
+				if paredes.has(v) or costo[_i(v)] == INF:
+					continue
+				
+				if costo[_i(v)] < mejor_costo:
+					mejor_costo = costo[_i(v)]
+					mejor = v
+			
+			# gradiente
+			if mejor != c:
+				flujo[_i(c)] = Vector2(mejor - c).normalized()
+
 
 
 func flujo_en(pos: Vector2) -> Vector2:

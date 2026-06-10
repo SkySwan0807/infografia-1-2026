@@ -11,8 +11,8 @@
 
 extends Node2D
 
-const MAX_SPEED := 80.0
-const ACCEL := 400.0
+const MAX_SPEED := 50.0
+const ACCEL := 200.0
 const SEP_RADIUS := 14.0
 
 @export var peso_flujo: float = 1.0
@@ -28,20 +28,18 @@ func _physics_process(delta: float) -> void:
 		return
 	var deseada: Vector2 = campo.flujo_en(position) * MAX_SPEED * peso_flujo
 
-	# ----------------------------------------------------------------------
-	# TODO (en clase): separación. Recorrer crowd.agentes; por cada vecino a
-	# menos de SEP_RADIUS, sumar un empuje en contra; mezclarlo en `deseada`:
-	#
-	#   var sep := Vector2.ZERO
-	#   for a in crowd.agentes:
-	#       if a == self: continue
-	#       var d := position.distance_to(a.position)
-	#       if d < SEP_RADIUS and d > 0.0:
-	#           sep += (position - a.position) / d
-	#   if sep != Vector2.ZERO:
-	#       deseada += sep.normalized() * MAX_SPEED * peso_separacion
-	# ----------------------------------------------------------------------
-
+	var sep = Vector2.ZERO
+	for a in crowd.agentes:
+		if a == self:
+			continue
+		# encontrar a la vecindad cercana (separacion)
+		var d = position.distance_to(a.position)
+		if d < SEP_RADIUS and d > 0.0:
+			sep += (position - a.position) / d
+	
+	if sep != Vector2.ZERO:
+		deseada += sep.normalized() * MAX_SPEED * peso_separacion
+		
 	velocity = velocity.move_toward(deseada, ACCEL * delta)
 	position += velocity * delta
 	if velocity.length() > 1.0:

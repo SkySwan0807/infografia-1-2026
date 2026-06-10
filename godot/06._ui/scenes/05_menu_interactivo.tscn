@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://ui9scene050001"]
+
+[ext_resource type="Script" path="res://scripts/menu_principal.gd" id="1_menu"]
+
+[node name="MenuPrincipal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="Menu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -160.0
+offset_right = 200.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 18
+
+[node name="Titulo" type="Label" parent="Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Mi Juego"
+horizontal_alignment = 1
+
+[node name="Subtitulo" type="Label" parent="Menu"]
+layout_mode = 2
+text = "los botones cambian de pantalla"
+horizontal_alignment = 1
+
+[node name="Espacio" type="Control" parent="Menu"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Jugar" type="Button" parent="Menu"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Jugar"
+
+[node name="Salir" type="Button" parent="Menu"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Salir"
+
+[connection signal="pressed" from="Menu/Jugar" to="." method="_on_jugar_pressed"]
+[connection signal="pressed" from="Menu/Salir" to="." method="_on_salir_pressed"]
