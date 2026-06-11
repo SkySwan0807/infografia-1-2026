@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://sh10scene050001"]
+
+[ext_resource type="Shader" path="res://shaders/uniforms_demo.gdshader" id="1_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uniforms"]
+shader = ExtResource("1_shader")
+
+[sub_resource type="LabelSettings" id="LabelSettings_titulo"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_nota"]
+font_size = 18
+font_color = Color(0.66, 0.7, 0.85, 1)
+
+[node name="Uniforms" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Titulo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 24.0
+offset_right = 1240.0
+offset_bottom = 64.0
+text = "05 — Uniforms: perillas para el inspector (🔨 en vivo)"
+label_settings = SubResource("LabelSettings_titulo")
+
+[node name="Nota" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 66.0
+offset_right = 1240.0
+offset_bottom = 120.0
+text = "El shader funciona, pero sus números viven en el código. En clase los convertimos
+en uniforms: el inspector del material muestra las perillas solas."
+label_settings = SubResource("LabelSettings_nota")
+
+[node name="Rect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_uniforms")
+layout_mode = 0
+offset_left = 430.0
+offset_top = 170.0
+offset_right = 850.0
+offset_bottom = 590.0

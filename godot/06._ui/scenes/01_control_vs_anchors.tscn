@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://ui9scene010001"]
+[gd_scene format=3 uid="uid://bb6felr6i074w"]
 
-[ext_resource type="Texture2D" uid="uid://ui9icon0000001" path="res://icon.svg" id="1_icon"]
+[ext_resource type="Texture2D" uid="uid://bbvfome6h074w" path="res://icon.svg" id="1_icon"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_titulo"]
 font_size = 32
 
-[node name="ControlVsAnclas" type="Control"]
+[node name="ControlVsAnclas" type="Control" unique_id=185291034]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,29 +13,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Titulo" type="Label" parent="."]
+[node name="Titulo" type="Label" parent="." unique_id=2037183142]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -300.0
-offset_top = 24.0
-offset_right = 300.0
-offset_bottom = 64.0
+offset_left = -299.5
+offset_right = 299.5
+offset_bottom = 45.0
 grow_horizontal = 2
 text = "Control + anclas: la UI se acomoda sola"
 label_settings = SubResource("LabelSettings_titulo")
 horizontal_alignment = 1
 
-[node name="ArribaIzq" type="Panel" parent="."]
+[node name="ArribaIzq" type="Panel" parent="." unique_id=2057519770]
 layout_mode = 1
-anchors_preset = 0
 offset_left = 24.0
 offset_top = 90.0
 offset_right = 214.0
 offset_bottom = 180.0
 
-[node name="Texto" type="Label" parent="ArribaIzq"]
+[node name="Texto" type="Label" parent="ArribaIzq" unique_id=1866521691]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,7 +45,7 @@ preset 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ArribaDer" type="Panel" parent="."]
+[node name="ArribaDer" type="Panel" parent="." unique_id=1844355638]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -58,7 +56,7 @@ offset_right = -24.0
 offset_bottom = 180.0
 grow_horizontal = 0
 
-[node name="Texto" type="Label" parent="ArribaDer"]
+[node name="Texto" type="Label" parent="ArribaDer" unique_id=1874976573]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -70,7 +68,7 @@ preset 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AbajoIzq" type="Panel" parent="."]
+[node name="AbajoIzq" type="Panel" parent="." unique_id=820778695]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -81,7 +79,7 @@ offset_right = 214.0
 offset_bottom = -90.0
 grow_vertical = 0
 
-[node name="Texto" type="Label" parent="AbajoIzq"]
+[node name="Texto" type="Label" parent="AbajoIzq" unique_id=1461202936]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,7 +91,7 @@ preset 2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AbajoDer" type="Panel" parent="."]
+[node name="AbajoDer" type="Panel" parent="." unique_id=2045619740]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -107,7 +105,7 @@ offset_bottom = -90.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Texto" type="Label" parent="AbajoDer"]
+[node name="Texto" type="Label" parent="AbajoDer" unique_id=1637109313]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -119,7 +117,7 @@ preset 3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Centro" type="Panel" parent="."]
+[node name="Centro" type="Panel" parent="." unique_id=189555840]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -133,7 +131,7 @@ offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Texto" type="Label" parent="Centro"]
+[node name="Texto" type="Label" parent="Centro" unique_id=207979337]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -145,12 +143,12 @@ preset 8"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="IconoNode2D" type="Sprite2D" parent="."]
-position = Vector2(640, 470)
+[node name="IconoNode2D" type="Sprite2D" parent="." unique_id=165387520]
+position = Vector2(622.9999, 477)
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("1_icon")
 
-[node name="Nota" type="Label" parent="."]
+[node name="Nota" type="Label" parent="." unique_id=259788860]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

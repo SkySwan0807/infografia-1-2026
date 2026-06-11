@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://sh10scene010001"]
+
+[ext_resource type="Shader" path="res://shaders/color_solido.gdshader" id="1_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_solido"]
+shader = ExtResource("1_shader")
+
+[sub_resource type="LabelSettings" id="LabelSettings_titulo"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_nota"]
+font_size = 18
+font_color = Color(0.66, 0.7, 0.85, 1)
+
+[node name="ColorSolido" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Titulo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 24.0
+offset_right = 1240.0
+offset_bottom = 64.0
+text = "01 — Color sólido: fragment() corre para CADA pixel"
+label_settings = SubResource("LabelSettings_titulo")
+
+[node name="Nota" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 66.0
+offset_right = 1240.0
+offset_bottom = 96.0
+text = "Abre shaders/color_solido.gdshader: tres líneas. Cambia el vec4 y mira el rectángulo."
+label_settings = SubResource("LabelSettings_nota")
+
+[node name="Rect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_solido")
+layout_mode = 0
+offset_left = 440.0
+offset_top = 180.0
+offset_right = 840.0
+offset_bottom = 580.0

@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://sh10scene080001"]
+
+[ext_resource type="Shader" path="res://shaders/agua.gdshader" id="1_agua"]
+[ext_resource type="Shader" path="res://shaders/calor.gdshader" id="2_calor"]
+[ext_resource type="Shader" path="res://shaders/pixelar.gdshader" id="3_pixelar"]
+[ext_resource type="Texture2D" uid="uid://ceccqkbh6khr1" path="res://assets/player.png" id="4_player"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_agua"]
+shader = ExtResource("1_agua")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_calor"]
+shader = ExtResource("2_calor")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pixelar"]
+shader = ExtResource("3_pixelar")
+
+[sub_resource type="LabelSettings" id="LabelSettings_titulo"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_pie"]
+font_size = 20
+
+[node name="Distorsion" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Titulo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 24.0
+offset_right = 1240.0
+offset_bottom = 64.0
+text = "08 — Distorsión: no cambies el color, cambia DÓNDE lees la textura"
+label_settings = SubResource("LabelSettings_titulo")
+
+[node name="SpriteAgua" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_agua")
+position = Vector2(250, 360)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("4_player")
+
+[node name="PieAgua" type="Label" parent="."]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 540.0
+offset_right = 350.0
+offset_bottom = 570.0
+text = "agua (onda radial)"
+label_settings = SubResource("LabelSettings_pie")
+horizontal_alignment = 1
+
+[node name="SpriteCalor" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_calor")
+position = Vector2(640, 360)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("4_player")
+
+[node name="PieCalor" type="Label" parent="."]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 540.0
+offset_right = 740.0
+offset_bottom = 570.0
+text = "calor (filas corridas)"
+label_settings = SubResource("LabelSettings_pie")
+horizontal_alignment = 1
+
+[node name="SpritePixelar" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_pixelar")
+position = Vector2(1030, 360)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("4_player")
+
+[node name="PiePixelar" type="Label" parent="."]
+layout_mode = 0
+offset_left = 930.0
+offset_top = 540.0
+offset_right = 1130.0
+offset_bottom = 570.0
+text = "pixelar (floor en UV)"
+label_settings = SubResource("LabelSettings_pie")
+horizontal_alignment = 1

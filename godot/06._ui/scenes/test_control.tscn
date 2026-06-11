@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b5ammtb1hsl7n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_aj12f"]
+font_size = 144
+font_color = Color(1, 0.38039216, 1, 1)
+outline_color = Color(0.1655089, 0.1654441, 0, 1)
+
+[node name="Control" type="Control" unique_id=190103802]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=651520099]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 64.0
+offset_right = 479.0
+offset_bottom = 261.0
+text = "HOLA"
+label_settings = SubResource("LabelSettings_aj12f")

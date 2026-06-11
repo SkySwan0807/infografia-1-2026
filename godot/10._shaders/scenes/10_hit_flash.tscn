@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://sh10scene100001"]
+
+[ext_resource type="Shader" path="res://shaders/hit_flash.gdshader" id="1_flash"]
+[ext_resource type="Texture2D" uid="uid://ceccqkbh6khr1" path="res://assets/player.png" id="2_player"]
+[ext_resource type="Script" path="res://scripts/hit_flash.gd" id="3_script"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_flash"]
+shader = ExtResource("1_flash")
+
+[sub_resource type="LabelSettings" id="LabelSettings_titulo"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_nota"]
+font_size = 18
+font_color = Color(0.66, 0.7, 0.85, 1)
+
+[node name="HitFlash" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Titulo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 24.0
+offset_right = 1240.0
+offset_bottom = 64.0
+text = "10 — 🔨 Hit flash: pulsa H para golpear al de la IZQUIERDA"
+label_settings = SubResource("LabelSettings_titulo")
+
+[node name="Nota" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 66.0
+offset_right = 1240.0
+offset_bottom = 140.0
+text = "El script ya empuja el uniform con set_shader_parameter() + tween, pero el shader
+todavía lo ignora: H no hace nada hasta escribir SU línea en clase. Y ojo: los dos
+sprites comparten el MISMO material... cuando flashee, flashearán los dos."
+label_settings = SubResource("LabelSettings_nota")
+
+[node name="Golpeado" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_flash")
+position = Vector2(450, 400)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_player")
+script = ExtResource("3_script")
+
+[node name="Companero" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_flash")
+position = Vector2(830, 400)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_player")
