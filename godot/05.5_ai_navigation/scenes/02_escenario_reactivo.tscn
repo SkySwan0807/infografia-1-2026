@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cnav02react01"]
+
+[ext_resource type="PackedScene" uid="uid://cnavescena001" path="res://scenes/escenario.tscn" id="1_mundo"]
+[ext_resource type="PackedScene" uid="uid://cnavplayer001" path="res://scenes/player.tscn" id="2_player"]
+[ext_resource type="Script" uid="uid://ceywttfi84hjl" path="res://scripts/enemigo_reactivo.gd" id="3_enem"]
+[ext_resource type="Texture2D" uid="uid://kk71xb6np3po" path="res://assets/textures/Enemies/Bat.png" id="4_bat"]
+
+[sub_resource type="CircleShape2D" id="circle_enem"]
+radius = 5.0
+
+[node name="EscenarioReactivo" type="Node2D" unique_id=659936661]
+
+[node name="Mundo" parent="." unique_id=121762483 instance=ExtResource("1_mundo")]
+
+[node name="Jugador" parent="." unique_id=1033995821 instance=ExtResource("2_player")]
+position = Vector2(56, 152)
+
+[node name="Camera2D" type="Camera2D" parent="Jugador" unique_id=1322518522]
+
+[node name="Enemigo" type="CharacterBody2D" parent="." unique_id=1666384487]
+position = Vector2(264, 40)
+collision_layer = 4
+script = ExtResource("3_enem")
+player_path = NodePath("../Jugador")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemigo" unique_id=1655776640]
+position = Vector2(0, -4)
+texture = ExtResource("4_bat")
+hframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo" unique_id=325129875]
+shape = SubResource("circle_enem")
+
+[node name="LineaDeVista" type="RayCast2D" parent="Enemigo" unique_id=1308873721]

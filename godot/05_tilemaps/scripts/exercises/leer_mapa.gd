@@ -25,15 +25,15 @@ func _physics_process(_delta: float) -> void:
 
 	var factor := 1.0
 
-	# TODO 🎓 1: averiguá qué celda pisa el jugador.
-	#   pista: mapa.local_to_map(mapa.to_local(global_position))
+	var cell := mapa.local_to_map(mapa.to_local(global_position))
 
-	# TODO 🎓 2: leé los datos del tile en esa celda con get_cell_tile_data(celda).
-	#   ojo: puede ser null (celda vacía). Si es null, no leas nada.
-
+	var datos  = mapa.get_cell_tile_data(cell)
+	print(cell, datos.get_custom_data("tipo"))
 	# TODO 🎓 3: si el tile existe y su custom data "tipo" es "agua",
 	#   poné factor = 0.4 (el jugador se mueve al 40% en el agua).
 	#   pista: datos.get_custom_data("tipo") == "agua"
+	if datos.get_custom_data("tipo") == "agua":
+		factor = 0.4
 
 	velocity = direccion.normalized() * velocidad * factor
 	move_and_slide()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5tmsc050000"]
+[gd_scene format=3 uid="uid://c5tmsc050000"]
 
 [ext_resource type="TileSet" uid="uid://d5tmdatos000" path="res://tilesets/datos.tres" id="1_ts"]
 [ext_resource type="Script" uid="uid://b5tmagua0000" path="res://scripts/mapa_con_agua.gd" id="2_mapa"]
@@ -8,24 +8,22 @@
 [sub_resource type="RectangleShape2D" id="rect_player"]
 size = Vector2(10, 12)
 
-[node name="LeerElMapa" type="Node2D"]
+[node name="LeerElMapa" type="Node2D" unique_id=1886923354]
 
-[node name="Mapa" type="TileMapLayer" parent="."]
+[node name="Mapa" type="TileMapLayer" parent="." unique_id=916352903]
 tile_set = ExtResource("1_ts")
 script = ExtResource("2_mapa")
 
-[node name="Jugador" type="CharacterBody2D" parent="."]
+[node name="Jugador" type="CharacterBody2D" parent="." unique_id=1281102639 node_paths=PackedStringArray("mapa")]
 position = Vector2(48, 40)
 collision_layer = 2
-collision_mask = 1
 script = ExtResource("3_leer")
 mapa = NodePath("../Mapa")
 
-[node name="Sprite2D" type="Sprite2D" parent="Jugador"]
+[node name="Sprite2D" type="Sprite2D" parent="Jugador" unique_id=2004726494]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_tex")
 hframes = 60
-frame = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador" unique_id=241740824]
 shape = SubResource("rect_player")

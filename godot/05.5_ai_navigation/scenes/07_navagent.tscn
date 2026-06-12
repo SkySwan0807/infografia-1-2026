@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cnav07navag01"]
+
+[ext_resource type="PackedScene" uid="uid://cnavescena001" path="res://scenes/escenario.tscn" id="1_mundo"]
+[ext_resource type="PackedScene" uid="uid://cnavplayer001" path="res://scenes/player.tscn" id="2_player"]
+[ext_resource type="Script" uid="uid://c4m5ln7itlfdf" path="res://scripts/nav_bake.gd" id="3_bake"]
+[ext_resource type="Script" uid="uid://cbgymh0oyk3b3" path="res://scripts/enemigo_navagent.gd" id="4_enem"]
+[ext_resource type="Texture2D" uid="uid://kk71xb6np3po" path="res://assets/textures/Enemies/Bat.png" id="5_bat"]
+
+[sub_resource type="CircleShape2D" id="circle_enem"]
+radius = 5.0
+
+[node name="NavAgent" type="Node2D" unique_id=826020195]
+
+[node name="Mundo" parent="." unique_id=1256339285 instance=ExtResource("1_mundo")]
+
+[node name="NavRegion" type="NavigationRegion2D" parent="." unique_id=1962481530]
+script = ExtResource("3_bake")
+mundo_path = NodePath("../Mundo")
+
+[node name="Jugador" parent="." unique_id=1546368471 instance=ExtResource("2_player")]
+position = Vector2(56, 152)
+
+[node name="Camera2D" type="Camera2D" parent="Jugador" unique_id=870739485]
+zoom = Vector2(0.56, 0.56)
+
+[node name="Enemigo" type="CharacterBody2D" parent="." unique_id=2028517606]
+position = Vector2(264, 40)
+collision_layer = 4
+script = ExtResource("4_enem")
+player_path = NodePath("../Jugador")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemigo" unique_id=1889128250]
+position = Vector2(0, -4)
+texture = ExtResource("5_bat")
+hframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo" unique_id=1182231830]
+shape = SubResource("circle_enem")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Enemigo" unique_id=1915832067]
+path_desired_distance = 4.0
+target_desired_distance = 4.0
+radius = 5.0

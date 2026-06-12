@@ -28,6 +28,8 @@ const T_TIERRA := Vector2i(1, 5)
 const T_CERCO := Vector2i(0, 0)
 const T_AGUA := Vector2i(1, 0)
 
+var estado = true
+
 func _ready() -> void:
 	_pintar_pasto()
 	_pintar_camino()
@@ -58,3 +60,18 @@ func _pintar_cerco() -> void:
 	for y in range(ALTO):
 		paredes.set_cell(Vector2i(0, y), F_CERCO, T_CERCO)
 		paredes.set_cell(Vector2i(ANCHO - 1, y), F_CERCO, T_CERCO)
+
+
+func _on_timer_timeout() -> void:
+	if estado:
+		for y in range(2, 4):
+			for x in range(13, 17):
+				paredes.set_cell(Vector2i(x, y))
+		
+		estado = not estado	
+	else:
+		for y in range(2, 4):
+			for x in range(13, 17):
+				paredes.set_cell(Vector2i(x, y), F_CERCO, T_CERCO)
+				
+		estado = not estado

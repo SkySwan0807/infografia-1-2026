@@ -1,0 +1,43 @@
+[gd_resource type="TileSet" format=3 uid="uid://cnavts0000001"]
+
+[ext_resource type="Texture2D" uid="uid://beqj12scbeer0" path="res://assets/textures/tiles/Grass.png" id="1_grass"]
+[ext_resource type="Texture2D" uid="uid://bckpuwt0pxhwe" path="res://assets/textures/tiles/Tilled_Dirt.png" id="2_dirt"]
+[ext_resource type="Texture2D" uid="uid://cxmf4twg3gccu" path="res://assets/textures/tiles/Fences.png" id="3_fence"]
+[ext_resource type="Texture2D" uid="uid://bqe4aj24gmrra" path="res://assets/textures/tiles/Water.png" id="4_water"]
+
+[sub_resource type="TileSetAtlasSource" id="atlas_grass"]
+texture = ExtResource("1_grass")
+1:5/0 = 0
+1:5/0/custom_data_0 = 1.0
+2:5/0 = 0
+2:5/0/custom_data_0 = 1.0
+
+[sub_resource type="TileSetAtlasSource" id="atlas_dirt"]
+texture = ExtResource("2_dirt")
+1:5/0 = 0
+1:5/0/custom_data_0 = 1.0
+
+[sub_resource type="TileSetAtlasSource" id="atlas_fence"]
+texture = ExtResource("3_fence")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="atlas_water"]
+texture = ExtResource("4_water")
+0:0/0 = 0
+0:0/0/custom_data_0 = 5.0
+1:0/0 = 0
+1:0/0/custom_data_0 = 5.0
+
+[resource]
+resource_name = "mundo_nav"
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
+custom_data_layer_0/name = "costo"
+custom_data_layer_0/type = 3
+sources/0 = SubResource("atlas_grass")
+sources/1 = SubResource("atlas_dirt")
+sources/2 = SubResource("atlas_fence")
+sources/3 = SubResource("atlas_water")

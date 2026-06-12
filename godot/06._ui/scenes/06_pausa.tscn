@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=3 uid="uid://ui9scene060001"]
+
+[ext_resource type="Script" path="res://scripts/mover.gd" id="1_mover"]
+[ext_resource type="Script" path="res://scripts/pausa.gd" id="2_pausa"]
+
+[node name="Juego" type="Node2D"]
+
+[node name="Jugador" type="Node2D" parent="."]
+position = Vector2(320, 320)
+process_mode = 1
+script = ExtResource("1_mover")
+
+[node name="Forma" type="Polygon2D" parent="Jugador"]
+color = Color(0.537, 0.706, 0.984, 1)
+polygon = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
+
+[node name="Ayuda" type="CanvasLayer" parent="."]
+
+[node name="Pista" type="Label" parent="Ayuda"]
+offset_left = 20.0
+offset_top = 16.0
+offset_right = 900.0
+offset_bottom = 46.0
+text = "Pulsa Esc para pausar. El cuadrado se congela; el menú sigue respondiendo."
+
+[node name="MenuPausa" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("2_pausa")
+
+[node name="Overlay" type="Control" parent="MenuPausa"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Oscurecer" type="ColorRect" parent="MenuPausa/Overlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.55)
+
+[node name="Menu" type="VBoxContainer" parent="MenuPausa/Overlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -120.0
+offset_right = 160.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 18
+
+[node name="Titulo" type="Label" parent="MenuPausa/Overlay/Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 44
+text = "PAUSA"
+horizontal_alignment = 1
+
+[node name="Continuar" type="Button" parent="MenuPausa/Overlay/Menu"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Continuar"
+
+[node name="MenuPrincipal" type="Button" parent="MenuPausa/Overlay/Menu"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Menú principal"
+
+[connection signal="pressed" from="MenuPausa/Overlay/Menu/Continuar" to="MenuPausa" method="_on_continuar_pressed"]
+[connection signal="pressed" from="MenuPausa/Overlay/Menu/MenuPrincipal" to="MenuPausa" method="_on_menu_principal_pressed"]
