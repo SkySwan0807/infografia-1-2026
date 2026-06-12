@@ -1,0 +1,111 @@
+[gd_scene load_steps=12 format=3 uid="uid://sh10scene090001"]
+
+[ext_resource type="Shader" path="res://shaders/ondear.gdshader" id="1_ondear"]
+[ext_resource type="Shader" path="res://shaders/pasto.gdshader" id="2_pasto"]
+[ext_resource type="Texture2D" uid="uid://ceccqkbh6khr1" path="res://assets/player.png" id="3_player"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ondear_sprite"]
+shader = ExtResource("1_ondear")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ondear_malla"]
+shader = ExtResource("1_ondear")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pasto"]
+shader = ExtResource("2_pasto")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bandera"]
+size = Vector2(360, 240)
+subdivide_width = 32
+subdivide_depth = 16
+orientation = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pasto"]
+size = Vector2(110, 300)
+subdivide_width = 2
+subdivide_depth = 24
+orientation = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_titulo"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_nota"]
+font_size = 18
+font_color = Color(0.66, 0.7, 0.85, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pie"]
+font_size = 20
+
+[node name="VertexOndas" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Titulo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 24.0
+offset_right = 1240.0
+offset_bottom = 64.0
+text = "09 — vertex(): mover la geometría (no el color)"
+label_settings = SubResource("LabelSettings_titulo")
+
+[node name="Nota" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 66.0
+offset_right = 1240.0
+offset_bottom = 120.0
+text = "El MISMO shader ondear.gdshader en los dos primeros: el sprite solo tiene 4 vértices
+(se tambalea); la malla subdividida tiene cientos (ondea suave)."
+label_settings = SubResource("LabelSettings_nota")
+
+[node name="SpriteOndear" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ondear_sprite")
+position = Vector2(230, 380)
+scale = Vector2(2, 2)
+texture = ExtResource("3_player")
+
+[node name="PieSprite" type="Label" parent="."]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 560.0
+offset_right = 360.0
+offset_bottom = 590.0
+text = "Sprite2D: 4 vértices"
+label_settings = SubResource("LabelSettings_pie")
+horizontal_alignment = 1
+
+[node name="MallaBandera" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_ondear_malla")
+position = Vector2(640, 380)
+mesh = SubResource("PlaneMesh_bandera")
+texture = ExtResource("3_player")
+
+[node name="PieMalla" type="Label" parent="."]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 560.0
+offset_right = 770.0
+offset_bottom = 590.0
+text = "malla subdividida: onda suave"
+label_settings = SubResource("LabelSettings_pie")
+horizontal_alignment = 1
+
+[node name="MallaPasto" type="MeshInstance2D" parent="."]
+modulate = Color(0.35, 0.75, 0.4, 1)
+material = SubResource("ShaderMaterial_pasto")
+position = Vector2(1050, 400)
+mesh = SubResource("PlaneMesh_pasto")
+
+[node name="PiePasto" type="Label" parent="."]
+layout_mode = 0
+offset_left = 920.0
+offset_top = 560.0
+offset_right = 1180.0
+offset_bottom = 590.0
+text = "pasto: la base no se mueve"
+label_settings = SubResource("LabelSettings_pie")
+horizontal_alignment = 1

@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bdniav2m0kaku"]
+
+[ext_resource type="Shader" uid="uid://d3io5w0sjxbnf" path="res://shaders/tablero.gdshader" id="1_tablero"]
+[ext_resource type="Shader" uid="uid://7pnglrjdm413" path="res://shaders/franjas.gdshader" id="2_franjas"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_titulo"]
+font_size = 28
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tablero"]
+shader = ExtResource("1_tablero")
+
+[sub_resource type="LabelSettings" id="LabelSettings_pie"]
+font_size = 20
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_franjas"]
+shader = ExtResource("2_franjas")
+
+[node name="Patrones" type="Control" unique_id=1147466368]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Titulo" type="Label" parent="." unique_id=764962118]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 24.0
+offset_right = 1240.0
+offset_bottom = 64.0
+text = "04 — Patrones: floor() y mod() convierten posición en celdas"
+label_settings = SubResource("LabelSettings_titulo")
+
+[node name="RectTablero" type="ColorRect" parent="." unique_id=948012776]
+material = SubResource("ShaderMaterial_tablero")
+layout_mode = 0
+offset_left = 130.0
+offset_top = 190.0
+offset_right = 550.0
+offset_bottom = 610.0
+
+[node name="PieTablero" type="Label" parent="." unique_id=1904729914]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 622.0
+offset_right = 550.0
+offset_bottom = 652.0
+text = "tablero: floor(UV * 8) + mod"
+label_settings = SubResource("LabelSettings_pie")
+
+[node name="RectFranjas" type="ColorRect" parent="." unique_id=1983443711]
+material = SubResource("ShaderMaterial_franjas")
+layout_mode = 0
+offset_left = 730.0
+offset_top = 190.0
+offset_right = 1150.0
+offset_bottom = 610.0
+
+[node name="PieFranjas" type="Label" parent="." unique_id=1205886862]
+layout_mode = 0
+offset_left = 730.0
+offset_top = 622.0
+offset_right = 1150.0
+offset_bottom = 652.0
+text = "franjas + círculo: las piezas del ejercicio"
+label_settings = SubResource("LabelSettings_pie")

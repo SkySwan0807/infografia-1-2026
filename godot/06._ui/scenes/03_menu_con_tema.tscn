@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ui9scene030001"]
+[gd_scene format=3 uid="uid://bb6felr6k074w"]
 
-[ext_resource type="Theme" uid="uid://ui9tema0000001" path="res://themes/tema.tres" id="1_tema"]
+[ext_resource type="Theme" uid="uid://bb7hl8e6h074w" path="res://themes/tema.tres" id="1_tema"]
+[ext_resource type="Script" uid="uid://djojdn28wdami" path="res://scripts/opciones.gd" id="2_hk327"]
 
-[node name="MenuConTema" type="Control"]
+[node name="MenuConTema" type="Control" unique_id=1059479802]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_tema")
 
-[node name="Menu" type="VBoxContainer" parent="."]
+[node name="Menu" type="VBoxContainer" parent="." unique_id=1828801347]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -26,32 +27,38 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
 
-[node name="Titulo" type="Label" parent="Menu"]
+[node name="Titulo" type="Label" parent="Menu" unique_id=1212598647]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Mi Juego"
 horizontal_alignment = 1
 
-[node name="Subtitulo" type="Label" parent="Menu"]
+[node name="Subtitulo" type="Label" parent="Menu" unique_id=303812639]
 layout_mode = 2
 text = "el mismo tema viste todos los botones"
 horizontal_alignment = 1
 
-[node name="Espacio" type="Control" parent="Menu"]
+[node name="Espacio" type="Control" parent="Menu" unique_id=1847549305]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
-[node name="Jugar" type="Button" parent="Menu"]
+[node name="Jugar" type="Button" parent="Menu" unique_id=970278058]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Jugar"
 
-[node name="Opciones" type="Button" parent="Menu"]
+[node name="Opciones" type="Button" parent="Menu" unique_id=890252791]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Opciones"
+script = ExtResource("2_hk327")
 
-[node name="Salir" type="Button" parent="Menu"]
+[node name="Timer" type="Timer" parent="Menu/Opciones" unique_id=589295166]
+autostart = true
+
+[node name="Salir" type="Button" parent="Menu" unique_id=1592212754]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Salir"
+
+[connection signal="timeout" from="Menu/Opciones/Timer" to="Menu/Opciones" method="_on_timer_timeout"]

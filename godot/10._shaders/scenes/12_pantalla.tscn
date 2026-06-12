@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://sh10scene120001"]
+
+[ext_resource type="Shader" path="res://shaders/pantalla_fx.gdshader" id="1_fx"]
+[ext_resource type="Texture2D" uid="uid://ceccqkbh6khr1" path="res://assets/player.png" id="2_player"]
+[ext_resource type="Texture2D" uid="uid://crugmyj0piwir" path="res://assets/coin.png" id="3_coin"]
+[ext_resource type="Script" path="res://scripts/mover.gd" id="4_mover"]
+[ext_resource type="Script" path="res://scripts/pantalla_fx.gd" id="5_selector"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fx"]
+shader = ExtResource("1_fx")
+shader_parameter/modo = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_titulo"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_nota"]
+font_size = 18
+font_color = Color(0.66, 0.7, 0.85, 1)
+
+[node name="Pantalla" type="Node2D"]
+
+[node name="Titulo" type="Label" parent="."]
+offset_left = 40.0
+offset_top = 24.0
+offset_right = 1240.0
+offset_bottom = 64.0
+text = "12 — Shader de PANTALLA: lee el frame y lo repinta"
+label_settings = SubResource("LabelSettings_titulo")
+
+[node name="Nota" type="Label" parent="."]
+offset_left = 40.0
+offset_top = 66.0
+offset_right = 1240.0
+offset_bottom = 120.0
+text = "Teclas: 1 = viñeta · 2 = CRT · 0 = nada. El ColorRect de arriba lee el juego ya
+dibujado (hint_screen_texture + SCREEN_UV) — hasta este texto pasa por el shader."
+label_settings = SubResource("LabelSettings_nota")
+
+[node name="Jugador" type="Sprite2D" parent="."]
+position = Vector2(400, 400)
+scale = Vector2(2, 2)
+texture = ExtResource("2_player")
+script = ExtResource("4_mover")
+
+[node name="Moneda" type="Sprite2D" parent="."]
+position = Vector2(800, 300)
+scale = Vector2(2, 2)
+texture = ExtResource("3_coin")
+script = ExtResource("4_mover")
+velocidad = Vector2(-180, 220)
+
+[node name="Moneda2" type="Sprite2D" parent="."]
+position = Vector2(640, 550)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_coin")
+script = ExtResource("4_mover")
+velocidad = Vector2(140, -190)
+
+[node name="FX" type="CanvasLayer" parent="."]
+
+[node name="Rect" type="ColorRect" parent="FX"]
+material = SubResource("ShaderMaterial_fx")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_selector")

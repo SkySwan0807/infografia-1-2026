@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://sh10scene030001"]
+
+[ext_resource type="Shader" path="res://shaders/visual_radial.tres" id="1_grafo"]
+[ext_resource type="Shader" path="res://shaders/radial_codigo.gdshader" id="2_codigo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_grafo"]
+shader = ExtResource("1_grafo")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_codigo"]
+shader = ExtResource("2_codigo")
+
+[sub_resource type="LabelSettings" id="LabelSettings_titulo"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_nota"]
+font_size = 18
+font_color = Color(0.66, 0.7, 0.85, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pie"]
+font_size = 20
+
+[node name="VisualVsCodigo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Titulo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 24.0
+offset_right = 1240.0
+offset_bottom = 64.0
+text = "03 — El mismo shader, dos vistas: grafo y código"
+label_settings = SubResource("LabelSettings_titulo")
+
+[node name="Nota" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 66.0
+offset_right = 1240.0
+offset_bottom = 96.0
+text = "Abre los dos en el editor: cada nodo del grafo es una línea del código. Al GPU le llega lo mismo."
+label_settings = SubResource("LabelSettings_nota")
+
+[node name="EtiquetaGrafo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 130.0
+offset_right = 580.0
+offset_bottom = 160.0
+text = "GRAFO — shaders/visual_radial.tres"
+label_settings = SubResource("LabelSettings_pie")
+
+[node name="RectGrafo" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_grafo")
+layout_mode = 0
+offset_left = 120.0
+offset_top = 170.0
+offset_right = 580.0
+offset_bottom = 630.0
+
+[node name="EtiquetaCodigo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 130.0
+offset_right = 1160.0
+offset_bottom = 160.0
+text = "CÓDIGO — shaders/radial_codigo.gdshader"
+label_settings = SubResource("LabelSettings_pie")
+
+[node name="RectCodigo" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_codigo")
+layout_mode = 0
+offset_left = 700.0
+offset_top = 170.0
+offset_right = 1160.0
+offset_bottom = 630.0

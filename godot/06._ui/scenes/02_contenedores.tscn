@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ui9scene020001"]
+[gd_scene format=3 uid="uid://bb6felr6j074w"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_titulo"]
 font_size = 32
 
-[node name="Contenedores" type="Control"]
+[node name="Contenedores" type="Control" unique_id=574560722]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Titulo" type="Label" parent="."]
+[node name="Titulo" type="Label" parent="." unique_id=2042533923]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -25,7 +25,7 @@ text = "Los contenedores acomodan a sus hijos"
 label_settings = SubResource("LabelSettings_titulo")
 horizontal_alignment = 1
 
-[node name="Fila" type="HBoxContainer" parent="."]
+[node name="Fila" type="HBoxContainer" parent="." unique_id=1266300034]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,77 +38,170 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
 
-[node name="Col1" type="VBoxContainer" parent="Fila"]
+[node name="Col1" type="VBoxContainer" parent="Fila" unique_id=2114307484]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="Header" type="Label" parent="Fila/Col1"]
+[node name="Header" type="Label" parent="Fila/Col1" unique_id=713980901]
 layout_mode = 2
 text = "VBoxContainer"
 horizontal_alignment = 1
 
-[node name="Demo" type="VBoxContainer" parent="Fila/Col1"]
+[node name="Demo" type="VBoxContainer" parent="Fila/Col1" unique_id=859642437]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Uno" type="Button" parent="Fila/Col1/Demo"]
+[node name="Uno" type="Button" parent="Fila/Col1/Demo" unique_id=1306032471]
 layout_mode = 2
 text = "Uno"
 
-[node name="Dos" type="Button" parent="Fila/Col1/Demo"]
+[node name="Dos" type="Button" parent="Fila/Col1/Demo" unique_id=784779299]
 layout_mode = 2
 text = "Dos"
 
-[node name="Tres" type="Button" parent="Fila/Col1/Demo"]
+[node name="Tres" type="Button" parent="Fila/Col1/Demo" unique_id=26396269]
 layout_mode = 2
 text = "Tres"
 
-[node name="Col2" type="VBoxContainer" parent="Fila"]
+[node name="Col2" type="VBoxContainer" parent="Fila" unique_id=1692039787]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 0
 theme_override_constants/separation = 10
 
-[node name="Header" type="Label" parent="Fila/Col2"]
+[node name="Header" type="Label" parent="Fila/Col2" unique_id=229546252]
 layout_mode = 2
 text = "GridContainer (2 col)"
 horizontal_alignment = 1
 
-[node name="Demo" type="GridContainer" parent="Fila/Col2"]
+[node name="Demo" type="GridContainer" parent="Fila/Col2" unique_id=1634473668]
 layout_mode = 2
 size_flags_vertical = 3
-columns = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
+columns = 2
 
-[node name="A" type="Button" parent="Fila/Col2/Demo"]
+[node name="A" type="Button" parent="Fila/Col2/Demo" unique_id=226213867]
 layout_mode = 2
 text = "A"
 
-[node name="B" type="Button" parent="Fila/Col2/Demo"]
+[node name="B" type="Button" parent="Fila/Col2/Demo" unique_id=86880295]
 layout_mode = 2
 text = "B"
 
-[node name="C" type="Button" parent="Fila/Col2/Demo"]
+[node name="C" type="Button" parent="Fila/Col2/Demo" unique_id=1709045648]
 layout_mode = 2
 text = "C"
 
-[node name="D" type="Button" parent="Fila/Col2/Demo"]
+[node name="D" type="Button" parent="Fila/Col2/Demo" unique_id=694784166]
 layout_mode = 2
 text = "D"
 
-[node name="Col3" type="VBoxContainer" parent="Fila"]
+[node name="Demo2" type="GridContainer" parent="Fila/Col2" unique_id=2091060144]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="A" type="Button" parent="Fila/Col2/Demo2" unique_id=188594345]
+layout_mode = 2
+text = "A"
+
+[node name="B" type="Button" parent="Fila/Col2/Demo2" unique_id=544596245]
+layout_mode = 2
+text = "B"
+
+[node name="C" type="Button" parent="Fila/Col2/Demo2" unique_id=1013793016]
+layout_mode = 2
+text = "C"
+
+[node name="D" type="Button" parent="Fila/Col2/Demo2" unique_id=1804810426]
+layout_mode = 2
+text = "D"
+
+[node name="Demo3" type="GridContainer" parent="Fila/Col2" unique_id=1288584827]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="A" type="Button" parent="Fila/Col2/Demo3" unique_id=1764250671]
+layout_mode = 2
+text = "A"
+
+[node name="B" type="Button" parent="Fila/Col2/Demo3" unique_id=884729750]
+layout_mode = 2
+text = "B"
+
+[node name="C" type="Button" parent="Fila/Col2/Demo3" unique_id=1115344912]
+layout_mode = 2
+text = "C"
+
+[node name="D" type="Button" parent="Fila/Col2/Demo3" unique_id=432385059]
+layout_mode = 2
+text = "D"
+
+[node name="Demo4" type="GridContainer" parent="Fila/Col2" unique_id=926748676]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="A" type="Button" parent="Fila/Col2/Demo4" unique_id=2073203191]
+layout_mode = 2
+text = "A"
+
+[node name="B" type="Button" parent="Fila/Col2/Demo4" unique_id=30890018]
+layout_mode = 2
+text = "B"
+
+[node name="C" type="Button" parent="Fila/Col2/Demo4" unique_id=1502168315]
+layout_mode = 2
+text = "C"
+
+[node name="D" type="Button" parent="Fila/Col2/Demo4" unique_id=348835075]
+layout_mode = 2
+text = "D"
+
+[node name="Demo5" type="GridContainer" parent="Fila/Col2" unique_id=177125693]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="A" type="Button" parent="Fila/Col2/Demo5" unique_id=1134837173]
+layout_mode = 2
+text = "A"
+
+[node name="B" type="Button" parent="Fila/Col2/Demo5" unique_id=1863323764]
+layout_mode = 2
+text = "B"
+
+[node name="C" type="Button" parent="Fila/Col2/Demo5" unique_id=1039744042]
+layout_mode = 2
+text = "C"
+
+[node name="D" type="Button" parent="Fila/Col2/Demo5" unique_id=1575576194]
+layout_mode = 2
+text = "D"
+
+[node name="Col3" type="VBoxContainer" parent="Fila" unique_id=1212515708]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="Header" type="Label" parent="Fila/Col3"]
+[node name="Header" type="Label" parent="Fila/Col3" unique_id=1493718851]
 layout_mode = 2
 text = "MarginContainer"
 horizontal_alignment = 1
 
-[node name="Demo" type="MarginContainer" parent="Fila/Col3"]
+[node name="Demo" type="MarginContainer" parent="Fila/Col3" unique_id=1581789126]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -116,10 +209,10 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="Panel" type="Panel" parent="Fila/Col3/Demo"]
+[node name="Panel" type="Panel" parent="Fila/Col3/Demo" unique_id=2033023388]
 layout_mode = 2
 
-[node name="Texto" type="Label" parent="Fila/Col3/Demo/Panel"]
+[node name="Texto" type="Label" parent="Fila/Col3/Demo/Panel" unique_id=557949175]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -131,20 +224,20 @@ de 24 px"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Col4" type="VBoxContainer" parent="Fila"]
+[node name="Col4" type="VBoxContainer" parent="Fila" unique_id=1158576047]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="Header" type="Label" parent="Fila/Col4"]
+[node name="Header" type="Label" parent="Fila/Col4" unique_id=875545533]
 layout_mode = 2
 text = "CenterContainer"
 horizontal_alignment = 1
 
-[node name="Demo" type="CenterContainer" parent="Fila/Col4"]
+[node name="Demo" type="CenterContainer" parent="Fila/Col4" unique_id=759967526]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Centrado" type="Button" parent="Fila/Col4/Demo"]
+[node name="Centrado" type="Button" parent="Fila/Col4/Demo" unique_id=1491490676]
 layout_mode = 2
 text = "centrado"
