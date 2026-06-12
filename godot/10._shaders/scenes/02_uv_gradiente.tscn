@@ -1,11 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://sh10scene020001"]
+[gd_scene format=3 uid="uid://bdniav2mxkaku"]
 
-[ext_resource type="Shader" path="res://shaders/uv_lineal.gdshader" id="1_lineal"]
-[ext_resource type="Shader" path="res://shaders/uv_mix.gdshader" id="2_mix"]
-[ext_resource type="Shader" path="res://shaders/uv_radial.gdshader" id="3_radial"]
+[ext_resource type="Shader" uid="uid://bv71c81yk36p4" path="res://shaders/uv_lineal.gdshader" id="1_lineal"]
+[ext_resource type="Shader" uid="uid://bjmy0i3mqm3k4" path="res://shaders/uv_mix.gdshader" id="2_mix"]
+[ext_resource type="Shader" uid="uid://c7ebxm2tw065i" path="res://shaders/uv_radial.gdshader" id="3_radial"]
+[ext_resource type="Shader" uid="uid://bo5q8x7io6gm7" path="res://scenes/02_uv_gradiente.tres" id="4_71w2r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_titulo"]
+font_size = 28
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lineal"]
 shader = ExtResource("1_lineal")
+
+[sub_resource type="LabelSettings" id="LabelSettings_pie"]
+font_size = 20
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mix"]
 shader = ExtResource("2_mix")
@@ -13,13 +20,10 @@ shader = ExtResource("2_mix")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_radial"]
 shader = ExtResource("3_radial")
 
-[sub_resource type="LabelSettings" id="LabelSettings_titulo"]
-font_size = 28
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q2agq"]
+shader = ExtResource("4_71w2r")
 
-[sub_resource type="LabelSettings" id="LabelSettings_pie"]
-font_size = 20
-
-[node name="UvGradiente" type="Control"]
+[node name="UvGradiente" type="Control" unique_id=451443612]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,7 +31,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Titulo" type="Label" parent="."]
+[node name="Titulo" type="Label" parent="." unique_id=1018173731]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 24.0
@@ -36,7 +40,7 @@ offset_bottom = 64.0
 text = "02 — UV: cada pixel sabe dónde está (la Y crece hacia ABAJO)"
 label_settings = SubResource("LabelSettings_titulo")
 
-[node name="RectLineal" type="ColorRect" parent="."]
+[node name="RectLineal" type="ColorRect" parent="." unique_id=1780640846]
 material = SubResource("ShaderMaterial_lineal")
 layout_mode = 0
 offset_left = 75.0
@@ -44,7 +48,7 @@ offset_top = 200.0
 offset_right = 415.0
 offset_bottom = 540.0
 
-[node name="PieLineal" type="Label" parent="."]
+[node name="PieLineal" type="Label" parent="." unique_id=986188573]
 layout_mode = 0
 offset_left = 75.0
 offset_top = 552.0
@@ -53,7 +57,7 @@ offset_bottom = 582.0
 text = "COLOR = vec4(UV.x, UV.y, 0, 1)"
 label_settings = SubResource("LabelSettings_pie")
 
-[node name="RectMix" type="ColorRect" parent="."]
+[node name="RectMix" type="ColorRect" parent="." unique_id=1923184355]
 material = SubResource("ShaderMaterial_mix")
 layout_mode = 0
 offset_left = 470.0
@@ -61,7 +65,7 @@ offset_top = 200.0
 offset_right = 810.0
 offset_bottom = 540.0
 
-[node name="PieMix" type="Label" parent="."]
+[node name="PieMix" type="Label" parent="." unique_id=1636467894]
 layout_mode = 0
 offset_left = 470.0
 offset_top = 552.0
@@ -70,7 +74,7 @@ offset_bottom = 582.0
 text = "mix(color_a, color_b, UV.x)"
 label_settings = SubResource("LabelSettings_pie")
 
-[node name="RectRadial" type="ColorRect" parent="."]
+[node name="RectRadial" type="ColorRect" parent="." unique_id=236269751]
 material = SubResource("ShaderMaterial_radial")
 layout_mode = 0
 offset_left = 865.0
@@ -78,7 +82,7 @@ offset_top = 200.0
 offset_right = 1205.0
 offset_bottom = 540.0
 
-[node name="PieRadial" type="Label" parent="."]
+[node name="PieRadial" type="Label" parent="." unique_id=159314683]
 layout_mode = 0
 offset_left = 865.0
 offset_top = 552.0
@@ -86,3 +90,11 @@ offset_right = 1205.0
 offset_bottom = 582.0
 text = "length(UV - 0.5) + smoothstep"
 label_settings = SubResource("LabelSettings_pie")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1099427456]
+material = SubResource("ShaderMaterial_q2agq")
+layout_mode = 0
+offset_left = 1312.0
+offset_top = 206.0
+offset_right = 1662.0
+offset_bottom = 547.0

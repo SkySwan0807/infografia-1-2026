@@ -16,8 +16,12 @@ void fragment() {
 
 	// capa 2: círculo suave encima
 	float dist = length(UV - vec2(0.5));
-	float circulo = 1.0 - smoothstep(0.18, 0.22, dist);
+	float circulo = 1.0 - smoothstep(0.15, 0.17, dist);
+	
+	float dist2 = length(UV - vec2(0.2, 0.2));
+	float circulo2 = 1.0 - smoothstep(0.08, 0.1, dist2);
+	
 	vec3 color_final = mix(base, vec3(1.0), circulo);
-
-	COLOR = vec4(color_final, 1.0);
+	vec3 color_final2 = mix(color_final, vec3(0.0), circulo2);
+	COLOR = vec4(color_final2, 1.0);
 }

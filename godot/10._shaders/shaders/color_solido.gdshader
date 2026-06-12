@@ -13,5 +13,5 @@ shader_type canvas_item;
 void fragment() {
 	// COLOR es la salida: un vec4 (rojo, verde, azul, alfa), cada canal 0.0–1.0.
 	// Todos los pixeles contestan lo mismo → un rectángulo sólido.
-	COLOR = vec4(1.0, 0.7, 0.0, 1.0);
+	COLOR = vec4(0.6, 0.7, 1.0, 1);
 }

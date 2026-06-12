@@ -7,7 +7,7 @@ shader_type canvas_item;
 // ===========================================================================
 
 void fragment() {
-	vec4 color_a = vec4(0.2, 0.4, 1.0, 1.0);
+	vec4 color_a = vec4(0.0, 0.2, 1.0, 1.0);
 	vec4 color_b = vec4(1.0, 0.5, 0.1, 1.0);
-	COLOR = mix(color_a, color_b, UV.x);
+	COLOR = mix(color_b, color_a, UV.y);
 }

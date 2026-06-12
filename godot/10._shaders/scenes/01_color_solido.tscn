@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://sh10scene010001"]
+[gd_scene format=3 uid="uid://bdniav2mwkaku"]
 
-[ext_resource type="Shader" path="res://shaders/color_solido.gdshader" id="1_shader"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_solido"]
-shader = ExtResource("1_shader")
+[ext_resource type="Shader" uid="uid://boxrvgu6lvv5e" path="res://shaders/color_solido.gdshader" id="1_shader"]
+[ext_resource type="Shader" uid="uid://bp8xkjivdceau" path="res://scenes/01_color_solido.gdshader" id="2_x7nml"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_titulo"]
 font_size = 28
@@ -12,7 +10,13 @@ font_size = 28
 font_size = 18
 font_color = Color(0.66, 0.7, 0.85, 1)
 
-[node name="ColorSolido" type="Control"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_solido"]
+shader = ExtResource("1_shader")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mt8fk"]
+shader = ExtResource("2_x7nml")
+
+[node name="ColorSolido" type="Control" unique_id=1487616494]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +24,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Titulo" type="Label" parent="."]
+[node name="Titulo" type="Label" parent="." unique_id=1795824974]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 24.0
@@ -29,7 +33,7 @@ offset_bottom = 64.0
 text = "01 — Color sólido: fragment() corre para CADA pixel"
 label_settings = SubResource("LabelSettings_titulo")
 
-[node name="Nota" type="Label" parent="."]
+[node name="Nota" type="Label" parent="." unique_id=33120917]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 66.0
@@ -38,10 +42,18 @@ offset_bottom = 96.0
 text = "Abre shaders/color_solido.gdshader: tres líneas. Cambia el vec4 y mira el rectángulo."
 label_settings = SubResource("LabelSettings_nota")
 
-[node name="Rect" type="ColorRect" parent="."]
+[node name="Rect" type="ColorRect" parent="." unique_id=1867649684]
 material = SubResource("ShaderMaterial_solido")
 layout_mode = 0
 offset_left = 440.0
 offset_top = 180.0
 offset_right = 840.0
 offset_bottom = 580.0
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1006325409]
+material = SubResource("ShaderMaterial_mt8fk")
+layout_mode = 0
+offset_left = 112.0
+offset_top = 232.0
+offset_right = 391.0
+offset_bottom = 516.0

@@ -9,9 +9,6 @@ shader_type canvas_item;
 // ===========================================================================
 
 void fragment() {
-	vec2 celda = floor(UV * 8.0);
-	float alterna = mod(celda.x + celda.y, 2.0);
-	vec3 oscuro = vec3(0.15, 0.15, 0.2);
-	vec3 claro = vec3(0.85, 0.85, 0.8);
-	COLOR = vec4(mix(oscuro, claro, alterna), 1.0);
+	vec2 celda = floor(UV * vec2(8.0, 1.0));
+	COLOR = vec4(vec3(mod(celda.x, 2.0)), 1.0);
 }

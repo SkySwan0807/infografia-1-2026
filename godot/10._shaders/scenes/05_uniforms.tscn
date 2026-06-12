@@ -1,9 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://sh10scene050001"]
+[gd_scene format=3 uid="uid://bdniav2m1kaku"]
 
-[ext_resource type="Shader" path="res://shaders/uniforms_demo.gdshader" id="1_shader"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uniforms"]
-shader = ExtResource("1_shader")
+[ext_resource type="Shader" uid="uid://dy7qx328gxxpg" path="res://shaders/uniforms_demo.gdshader" id="1_shader"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_titulo"]
 font_size = 28
@@ -12,7 +9,12 @@ font_size = 28
 font_size = 18
 font_color = Color(0.66, 0.7, 0.85, 1)
 
-[node name="Uniforms" type="Control"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uniforms"]
+shader = ExtResource("1_shader")
+shader_parameter/color_circulo = Color(0.6431373, 0, 0.5803922, 1)
+shader_parameter/radio = 20.0
+
+[node name="Uniforms" type="Control" unique_id=647453096]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +22,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Titulo" type="Label" parent="."]
+[node name="Titulo" type="Label" parent="." unique_id=974934386]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 24.0
@@ -29,7 +31,7 @@ offset_bottom = 64.0
 text = "05 — Uniforms: perillas para el inspector (🔨 en vivo)"
 label_settings = SubResource("LabelSettings_titulo")
 
-[node name="Nota" type="Label" parent="."]
+[node name="Nota" type="Label" parent="." unique_id=873820225]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 66.0
@@ -39,7 +41,7 @@ text = "El shader funciona, pero sus números viven en el código. En clase los 
 en uniforms: el inspector del material muestra las perillas solas."
 label_settings = SubResource("LabelSettings_nota")
 
-[node name="Rect" type="ColorRect" parent="."]
+[node name="Rect" type="ColorRect" parent="." unique_id=885803829]
 material = SubResource("ShaderMaterial_uniforms")
 layout_mode = 0
 offset_left = 430.0

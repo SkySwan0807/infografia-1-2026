@@ -18,11 +18,13 @@ shader_type canvas_item;
 
 // TODO (en vivo): declara acá arriba los uniforms color_circulo y radio.
 
+uniform vec3 color_circulo : source_color = vec3(1.0, 0.85, 0.3);
+uniform float radio : hint_range(0.1, 0.5) = 0.25;
+
 void fragment() {
 	// TODO (en vivo): borra estas dos constantes para que el shader use los
 	// uniforms (mismos nombres: no hay que tocar nada más abajo).
-	vec3 color_circulo = vec3(1.0, 0.85, 0.3);
-	float radio = 0.25;
+	//float radio = 0.25;
 
 	float dist = length(UV - vec2(0.5));
 	float t = smoothstep(radio, radio + 0.05, dist);
