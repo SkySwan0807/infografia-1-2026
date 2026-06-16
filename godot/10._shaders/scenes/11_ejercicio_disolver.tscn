@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://bdniav2nwkaku"]
+[gd_scene format=3 uid="uid://bdniav2nwkaku"]
 
 [ext_resource type="Shader" uid="uid://b6gmpkgj2w2eb" path="res://shaders/exercises/disolver.gdshader" id="1_disolver"]
+[ext_resource type="Shader" uid="uid://b6gmpkgj2w2eb" path="res://shaders/exercises/disolver.gdshader" id="1_disolver"]
 [ext_resource type="Texture2D" uid="uid://ceccqkbh6khr1" path="res://assets/player.png" id="2_player"]
+[ext_resource type="Script" uid="uid://qfrde6stul6p" path="res://scripts/disolver_click.gd" id="3_script"]
 [ext_resource type="Script" uid="uid://qfrde6stul6p" path="res://scripts/disolver_click.gd" id="3_script"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_titulo"]
@@ -30,6 +33,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 mouse_filter = 2
 
 [node name="Titulo" type="Label" parent="." unique_id=888467012]

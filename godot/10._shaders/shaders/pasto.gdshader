@@ -12,6 +12,6 @@ uniform float velocidad = 2.0;
 
 void vertex() {
 	// altura: 0 en el centro/base, crece hacia arriba (recuerda: -Y es arriba)
-	float altura = max(-VERTEX.y, 0.0);
+	float altura = max(-VERTEX.y, 0.5);
 	VERTEX.x += sin(TIME * velocidad) * altura * fuerza;
 }

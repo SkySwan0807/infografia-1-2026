@@ -1,11 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://sh10scene100001"]
+[gd_scene format=3 uid="uid://bdniav2nvkaku"]
 
-[ext_resource type="Shader" path="res://shaders/hit_flash.gdshader" id="1_flash"]
+[ext_resource type="Shader" uid="uid://dmg0e3yatic17" path="res://shaders/hit_flash.gdshader" id="1_flash"]
 [ext_resource type="Texture2D" uid="uid://ceccqkbh6khr1" path="res://assets/player.png" id="2_player"]
-[ext_resource type="Script" path="res://scripts/hit_flash.gd" id="3_script"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_flash"]
-shader = ExtResource("1_flash")
+[ext_resource type="Script" uid="uid://cli0lqylipwkt" path="res://scripts/hit_flash.gd" id="3_script"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_titulo"]
 font_size = 28
@@ -14,7 +11,11 @@ font_size = 28
 font_size = 18
 font_color = Color(0.66, 0.7, 0.85, 1)
 
-[node name="HitFlash" type="Control"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_flash"]
+shader = ExtResource("1_flash")
+shader_parameter/intensidad_flash = 0.00800000038
+
+[node name="HitFlash" type="Control" unique_id=1285358818]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,7 +23,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Titulo" type="Label" parent="."]
+[node name="Titulo" type="Label" parent="." unique_id=135530598]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 24.0
@@ -31,7 +32,7 @@ offset_bottom = 64.0
 text = "10 — 🔨 Hit flash: pulsa H para golpear al de la IZQUIERDA"
 label_settings = SubResource("LabelSettings_titulo")
 
-[node name="Nota" type="Label" parent="."]
+[node name="Nota" type="Label" parent="." unique_id=1407975124]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 66.0
@@ -42,14 +43,14 @@ todavía lo ignora: H no hace nada hasta escribir SU línea en clase. Y ojo: los
 sprites comparten el MISMO material... cuando flashee, flashearán los dos."
 label_settings = SubResource("LabelSettings_nota")
 
-[node name="Golpeado" type="Sprite2D" parent="."]
+[node name="Golpeado" type="Sprite2D" parent="." unique_id=1000000142]
 material = SubResource("ShaderMaterial_flash")
 position = Vector2(450, 400)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_player")
 script = ExtResource("3_script")
 
-[node name="Companero" type="Sprite2D" parent="."]
+[node name="Companero" type="Sprite2D" parent="." unique_id=1659374413]
 material = SubResource("ShaderMaterial_flash")
 position = Vector2(830, 400)
 scale = Vector2(2.5, 2.5)

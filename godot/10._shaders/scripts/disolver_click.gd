@@ -13,6 +13,7 @@ var disuelto := false
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		print("event!")
 		var mat := material as ShaderMaterial
 		var destino := 0.0 if disuelto else 1.0
 		disuelto = not disuelto

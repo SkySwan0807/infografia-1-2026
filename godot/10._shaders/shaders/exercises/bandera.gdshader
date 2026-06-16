@@ -23,8 +23,13 @@ shader_type canvas_item;
 // Solución en _solutions/bandera_solved.gdshader
 // ===========================================================================
 
+uniform float freq : hint_range(2.0, 10.0,1.0) = 4.0;
+
+
 void fragment() {
 	// TODO (paso 1): elige el color de la franja según UV.y.
 	// TODO (paso 2): mezcla el círculo blanco encima.
-	COLOR = vec4(1.0, 0.0, 1.0, 1.0);
+	float sin_red =  0.5 * sin(TIME * freq) + 0.5;
+	
+	COLOR = vec4(sin_red, 0.0, 0.0, sin_red);
 }

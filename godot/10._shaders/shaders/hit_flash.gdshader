@@ -16,6 +16,6 @@ uniform float intensidad_flash : hint_range(0.0, 1.0) = 0.0;
 void fragment() {
 	vec4 original = texture(TEXTURE, UV);
 	// TODO (en vivo): mezcla hacia blanco con intensidad_flash — una línea:
-	//   original.rgb = mix(original.rgb, vec3(1.0), intensidad_flash);
+	original.rgb = mix(original.rgb, vec3(1.0), intensidad_flash);
 	COLOR = original;
 }

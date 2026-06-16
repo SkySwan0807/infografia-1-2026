@@ -1,32 +1,35 @@
-[gd_scene load_steps=12 format=3 uid="uid://sh10scene070001"]
+[gd_scene format=3 uid="uid://bdniav2m3kaku"]
 
-[ext_resource type="Shader" path="res://shaders/gris.gdshader" id="1_gris"]
-[ext_resource type="Shader" path="res://shaders/sepia.gdshader" id="2_sepia"]
-[ext_resource type="Shader" path="res://shaders/tinte.gdshader" id="3_tinte"]
-[ext_resource type="Shader" path="res://shaders/contorno.gdshader" id="4_contorno"]
+[ext_resource type="Shader" uid="uid://bjdgxibgna8wo" path="res://shaders/gris.gdshader" id="1_gris"]
+[ext_resource type="Shader" uid="uid://bw8rulimapwys" path="res://shaders/sepia.gdshader" id="2_sepia"]
+[ext_resource type="Shader" uid="uid://ddkjeb8jehyjp" path="res://shaders/tinte.gdshader" id="3_tinte"]
+[ext_resource type="Shader" uid="uid://vhb0o56dohkk" path="res://shaders/contorno.gdshader" id="4_contorno"]
 [ext_resource type="Texture2D" uid="uid://ceccqkbh6khr1" path="res://assets/player.png" id="5_player"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gris"]
-shader = ExtResource("1_gris")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sepia"]
-shader = ExtResource("2_sepia")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tinte"]
-shader = ExtResource("3_tinte")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_contorno"]
-shader = ExtResource("4_contorno")
-shader_parameter/color_contorno = Color(1, 0.9, 0.3, 1)
-shader_parameter/grosor = 3.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_titulo"]
 font_size = 28
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gris"]
+shader = ExtResource("1_gris")
+shader_parameter/fuerza = 1.0
+
 [sub_resource type="LabelSettings" id="LabelSettings_pie"]
 font_size = 20
 
-[node name="EfectosTextura" type="Control"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sepia"]
+shader = ExtResource("2_sepia")
+shader_parameter/fuerza = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tinte"]
+shader = ExtResource("3_tinte")
+shader_parameter/tinte = Color(5.390644e-06, 0.7571414, 0.6309304, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_contorno"]
+shader = ExtResource("4_contorno")
+shader_parameter/color_contorno = Color(0, 0.7832617, 0.7742271, 1)
+shader_parameter/grosor = 3.8690001837775
+
+[node name="EfectosTextura" type="Control" unique_id=370389760]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,7 +37,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Titulo" type="Label" parent="."]
+[node name="Titulo" type="Label" parent="." unique_id=1611434140]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 24.0
@@ -43,13 +46,13 @@ offset_bottom = 64.0
 text = "07 — Efectos de textura: texture(TEXTURE, UV) lee el sprite"
 label_settings = SubResource("LabelSettings_titulo")
 
-[node name="SpriteGris" type="Sprite2D" parent="."]
+[node name="SpriteGris" type="Sprite2D" parent="." unique_id=911138382]
 material = SubResource("ShaderMaterial_gris")
 position = Vector2(230, 350)
 scale = Vector2(2, 2)
 texture = ExtResource("5_player")
 
-[node name="PieGris" type="Label" parent="."]
+[node name="PieGris" type="Label" parent="." unique_id=1572954679]
 layout_mode = 0
 offset_left = 130.0
 offset_top = 500.0
@@ -59,13 +62,13 @@ text = "gris (luminancia)"
 label_settings = SubResource("LabelSettings_pie")
 horizontal_alignment = 1
 
-[node name="SpriteSepia" type="Sprite2D" parent="."]
+[node name="SpriteSepia" type="Sprite2D" parent="." unique_id=973360937]
 material = SubResource("ShaderMaterial_sepia")
 position = Vector2(510, 350)
 scale = Vector2(2, 2)
 texture = ExtResource("5_player")
 
-[node name="PieSepia" type="Label" parent="."]
+[node name="PieSepia" type="Label" parent="." unique_id=1976513424]
 layout_mode = 0
 offset_left = 410.0
 offset_top = 500.0
@@ -75,13 +78,13 @@ text = "sepia"
 label_settings = SubResource("LabelSettings_pie")
 horizontal_alignment = 1
 
-[node name="SpriteTinte" type="Sprite2D" parent="."]
+[node name="SpriteTinte" type="Sprite2D" parent="." unique_id=1731457271]
 material = SubResource("ShaderMaterial_tinte")
 position = Vector2(790, 350)
 scale = Vector2(2, 2)
 texture = ExtResource("5_player")
 
-[node name="PieTinte" type="Label" parent="."]
+[node name="PieTinte" type="Label" parent="." unique_id=1286513144]
 layout_mode = 0
 offset_left = 690.0
 offset_top = 500.0
@@ -91,13 +94,13 @@ text = "tinte (multiplicar)"
 label_settings = SubResource("LabelSettings_pie")
 horizontal_alignment = 1
 
-[node name="SpriteContorno" type="Sprite2D" parent="."]
+[node name="SpriteContorno" type="Sprite2D" parent="." unique_id=1824131572]
 material = SubResource("ShaderMaterial_contorno")
 position = Vector2(1070, 350)
 scale = Vector2(2, 2)
 texture = ExtResource("5_player")
 
-[node name="PieContorno" type="Label" parent="."]
+[node name="PieContorno" type="Label" parent="." unique_id=1651071236]
 layout_mode = 0
 offset_left = 970.0
 offset_top = 500.0
