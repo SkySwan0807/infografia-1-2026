@@ -34,6 +34,9 @@ void fragment() {
 
 	// TODO: si el ruido de este pixel quedó por debajo de progreso, ya se
 	// quemó: descártalo.
+	if (ruido < progreso) {
+		discard;
+	}
 
 	COLOR = original;
 }

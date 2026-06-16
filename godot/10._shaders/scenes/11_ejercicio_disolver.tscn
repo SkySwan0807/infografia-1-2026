@@ -1,20 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://sh10scene110001"]
+[gd_scene format=3 uid="uid://bdniav2nwkaku"]
 
-[ext_resource type="Shader" path="res://shaders/exercises/disolver.gdshader" id="1_disolver"]
+[ext_resource type="Shader" uid="uid://b6gmpkgj2w2eb" path="res://shaders/exercises/disolver.gdshader" id="1_disolver"]
 [ext_resource type="Texture2D" uid="uid://ceccqkbh6khr1" path="res://assets/player.png" id="2_player"]
-[ext_resource type="Script" path="res://scripts/disolver_click.gd" id="3_script"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ruido"]
-frequency = 0.008
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ruido"]
-seamless = true
-noise = SubResource("FastNoiseLite_ruido")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_disolver"]
-shader = ExtResource("1_disolver")
-shader_parameter/progreso = 0.0
-shader_parameter/ruido_tex = SubResource("NoiseTexture2D_ruido")
+[ext_resource type="Script" uid="uid://qfrde6stul6p" path="res://scripts/disolver_click.gd" id="3_script"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_titulo"]
 font_size = 28
@@ -23,15 +11,28 @@ font_size = 28
 font_size = 18
 font_color = Color(0.66, 0.7, 0.85, 1)
 
-[node name="EjercicioDisolver" type="Control"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ruido"]
+frequency = 0.008
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ruido"]
+noise = SubResource("FastNoiseLite_ruido")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_disolver"]
+shader = ExtResource("1_disolver")
+shader_parameter/ruido_tex = SubResource("NoiseTexture2D_ruido")
+shader_parameter/progreso = 0.0
+
+[node name="EjercicioDisolver" type="Control" unique_id=2107178030]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="Titulo" type="Label" parent="."]
+[node name="Titulo" type="Label" parent="." unique_id=888467012]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 24.0
@@ -40,7 +41,7 @@ offset_bottom = 64.0
 text = "11 — 🎓 Ejercicio: disolver (haz CLIC... ¿no pasa nada? falta tu línea)"
 label_settings = SubResource("LabelSettings_titulo")
 
-[node name="Nota" type="Label" parent="."]
+[node name="Nota" type="Label" parent="." unique_id=1992521530]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 66.0
@@ -51,7 +52,7 @@ Tu tarea vive en shaders/exercises/disolver.gdshader: una comparación + discard
 Cuando funcione, el enemigo se quema pixel a pixel."
 label_settings = SubResource("LabelSettings_nota")
 
-[node name="Enemigo" type="Sprite2D" parent="."]
+[node name="Enemigo" type="Sprite2D" parent="." unique_id=504187407]
 material = SubResource("ShaderMaterial_disolver")
 position = Vector2(640, 400)
 scale = Vector2(3, 3)
