@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://sh10scene060001"]
+[gd_scene format=3 uid="uid://bdniav2m2kaku"]
 
-[ext_resource type="Shader" path="res://shaders/exercises/bandera.gdshader" id="1_shader"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bandera"]
-shader = ExtResource("1_shader")
+[ext_resource type="Script" uid="uid://b5yb74jjkepjh" path="res://scenes/06_ejercicio_bandera.gd" id="1_fl4c4"]
+[ext_resource type="Shader" uid="uid://b8318h8pgu5ts" path="res://shaders/exercises/bandera.gdshader" id="1_shader"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_titulo"]
 font_size = 28
@@ -12,15 +10,58 @@ font_size = 28
 font_size = 18
 font_color = Color(0.66, 0.7, 0.85, 1)
 
-[node name="EjercicioBandera" type="Control"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bandera"]
+shader = ExtResource("1_shader")
+shader_parameter/freq = 7.0
+
+[sub_resource type="Animation" id="Animation_fl4c4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rect:material:shader_parameter/freq")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [7.0]
+}
+
+[sub_resource type="Animation" id="Animation_fefvd"]
+resource_name = "anim1"
+length = 1.9333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rect:material:shader_parameter/freq")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.9333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 10.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ds8tw"]
+_data = {
+&"RESET": SubResource("Animation_fl4c4"),
+&"anim1": SubResource("Animation_fefvd")
+}
+
+[node name="EjercicioBandera" type="Control" unique_id=72856644 node_paths=PackedStringArray("rect")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_fl4c4")
+rect = NodePath("Rect")
 
-[node name="Titulo" type="Label" parent="."]
+[node name="Titulo" type="Label" parent="." unique_id=1639692062]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 24.0
@@ -29,7 +70,7 @@ offset_bottom = 64.0
 text = "06 — 🎓 Ejercicio: la bandera (si la ves MAGENTA, falta tu código)"
 label_settings = SubResource("LabelSettings_titulo")
 
-[node name="Nota" type="Label" parent="."]
+[node name="Nota" type="Label" parent="." unique_id=816507152]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 66.0
@@ -39,10 +80,44 @@ text = "Tu tarea vive en shaders/exercises/bandera.gdshader: tres franjas con UV
 círculo suave con length + smoothstep. Las pistas están en el archivo."
 label_settings = SubResource("LabelSettings_nota")
 
-[node name="Rect" type="ColorRect" parent="."]
+[node name="Rect" type="ColorRect" parent="." unique_id=171948252]
 material = SubResource("ShaderMaterial_bandera")
 layout_mode = 0
 offset_left = 370.0
 offset_top = 190.0
 offset_right = 910.0
 offset_bottom = 550.0
+
+[node name="Button" type="Button" parent="." unique_id=447339582]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 205.0
+offset_right = 187.0
+offset_bottom = 267.0
+text = "1
+"
+
+[node name="Button2" type="Button" parent="." unique_id=671560495]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 302.0
+offset_right = 149.0
+offset_bottom = 368.0
+text = "2
+"
+
+[node name="Button3" type="Button" parent="." unique_id=716320475]
+layout_mode = 0
+offset_left = 221.0
+offset_top = 293.0
+offset_right = 300.0
+offset_bottom = 380.0
+text = "3
+"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1158144821]
+libraries/ = SubResource("AnimationLibrary_ds8tw")
+
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[connection signal="button_up" from="Button2" to="." method="_on_button_2_button_up"]
+[connection signal="button_up" from="Button3" to="." method="_on_button_3_button_up"]
